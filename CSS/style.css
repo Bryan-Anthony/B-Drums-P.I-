@@ -20,9 +20,11 @@ body {
     /* Alinha ao centro na vertical */
 
     /* backdrop-filter: blur(px); efeito de desfoque */
+    margin: 0;
 }
 
-/* Navbar */
+
+/* NAVBAR */
 
 .navbar {
     background-color: #0000006a;
@@ -39,7 +41,7 @@ body {
     border-radius: 10px;
 }
 
-img {
+.navbar img {
     width: 45px;
     height: 45px;
     border-radius: 2px;
@@ -64,7 +66,8 @@ img {
     background-color: #ffffff;
 }
 
-/* Style Home */
+
+/* STYLE HOME */
 .fundo-home {
     position: absolute;
     top: 0;
@@ -72,6 +75,11 @@ img {
     width: 100%;
     height: 100vh;
     z-index: -1;
+}
+
+.fundo-home img{
+    width: 100%;
+    height: 100%;
 }
 
 .txt-home {
@@ -88,19 +96,25 @@ h1 {
 }
 
 .sobre {
-    width: 94%;
-    text-align: center;
+    width: 100%;
     display: flex;
-    flex-direction: row;
     justify-content: center;
     align-items: center;
     gap: 50px;
     flex-direction: row;
-    margin-top: 700px;
+    margin-top: 610px;
     color: #ffffff;
 }
 
-.contato {
+.sobre b {
+    color: #ffffff;
+}
+
+.sobre p {
+    margin-bottom: 1px;
+}
+
+/* .contato {
     width: 94%;
     text-align: center;
     display: flex;
@@ -108,19 +122,22 @@ h1 {
     justify-content: center;
     align-items: center;
     gap: 50px;
+} */
+
+.sobre img {
+    display: flex;
+    height: 43px;
+    width: 90px;
+
 }
 
-.contato img {
-    height: 53px;
-    width: 100px;
-}
-
-.contato a {
+/* .contato a {
     color: white;
-}
+    padding: 3px;
+} */
 
 
-/* Imagem dentro da div */
+/* img de fundo */
 .fundo-home img {
     margin-top: 0%;
     width: 100%;
@@ -129,7 +146,7 @@ h1 {
 }
 
 
-/* Style Cadastro */
+/* STYLE CADASTRO */
 
 .campos {
     display: flex;
