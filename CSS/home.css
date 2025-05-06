@@ -1,0 +1,149 @@
+body {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 100vh;
+
+    font-family: "Titan One", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+
+    justify-content: center;
+    align-items: center;
+    background-color: #000000;
+    /* background-image: url('../IMG/fundo-cad.png');
+    background-size: cover;
+    background-position: center; */
+    /* background-color: rgb(00, 02, 14); */
+
+
+    /* Alinha ao centro na vertical */
+
+    /* backdrop-filter: blur(px); efeito de desfoque */
+    margin: 0;
+}
+
+
+/* NAVBAR */
+
+.navbar {
+    background-color: #0000006a;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px;
+    height: 35px;
+    border-radius: 10px;
+}
+
+.navbar img {
+    width: 45px;
+    height: 45px;
+    border-radius: 2px;
+    margin-left: 0;
+}
+
+
+.nav-links {
+    display: flex;
+    gap: 70px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+}
+
+.nav-links a:hover {
+    color: black;
+    border-radius: 7px;
+    background-color: #ffffff;
+}
+
+
+/* STYLE HOME */
+.fundo-home {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: -1;
+}
+
+.fundo-home img {
+    width: 100%;
+    height: 100%;
+}
+
+.txt-home {
+    display: flex;
+    color: #ffffff;
+    font-family: "Rubik Doodle Shadow", system-ui;
+    font-weight: 400;
+    font-style: normal;
+    position: absolute;
+    left: 50px;
+    margin-bottom: 315px;
+    align-items: center;
+    justify-content: center;
+}
+
+.txt-home h1 {
+    font-size: 100px;
+}
+
+.sobre {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-left: 70px;
+    flex-direction: row;
+    margin-top: 610px;
+    color: #ffffff;
+}
+
+.sobre-img {
+    display: flex;
+    margin-left: 65px;
+}
+
+.sobre b {
+    color: #ffffff;
+}
+
+.sobre p {
+    margin-bottom: 1px;
+    gap: 50px;
+}
+
+/* .contato {
+    width: 94%;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+} */
+
+.sobre img {
+    display: flex;
+    height: 43px;
+    width: 85px;
+
+}
+
+/* img de fundo */
+.fundo-home img {
+    margin-top: 0%;
+    width: 100%;
+    height: 90%;
+
+}
