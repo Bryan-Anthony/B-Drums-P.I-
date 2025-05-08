@@ -33,4 +33,3 @@ CONSTRAINT respostaQuiz
 CONSTRAINT pkComposta
 	PRIMARY KEY (id, fkUsuario, fkQuiz)
 );
-
