@@ -37,15 +37,25 @@ body {
     justify-content: center;
     align-items: center;
     padding: 10px 20px;
-    height: 35px;
+    height: 45px;
     border-radius: 10px;
+    font-size: 20px;
+
 }
 
-.navbar img {
-    width: 45px;
-    height: 45px;
+.logo {
+    position: absolute;
+    left: 50px;
+    top: 0px;
+    z-index: 1001;
+
+}
+
+.logo img {
+    width: 125px;
+    height: 125px;
     border-radius: 2px;
-    margin-left: 0;
+    display: block;
 }
 
 
