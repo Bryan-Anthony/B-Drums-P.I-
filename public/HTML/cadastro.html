@@ -17,7 +17,6 @@
 
 <body>
 
-
   <div class="navbar">
     <div class="logo">
       <a href="home.html">
@@ -26,15 +25,16 @@
     </div>
 
     <div class="nav-links">
-      <a href="home.html"> INÍCIO </a>
-      <a href="cadastro.html" style="color: burlywood;"> CADASTRO </a>
-      <a href="login.html"> LOGIN </a>
-      <a href="criador.html"> CRIADOR </a>
+      <a href="../index.html"> INÍCIO </a>
+      <a href="../HTML/cadastro.html" style="color: burlywood;"> CADASTRO </a>
+      <a href="../HTML/login.html"> LOGIN </a>
+      <a href="../HTML/criador.html"> CRIADOR </a>
     </div>
 
   </div>
 
-  <div class=" campos">
+
+  <div class="campos">
 
     <div class="inputs">
       <label for="inp_nome"> Nome: </label>
@@ -57,9 +57,9 @@
       <input type="password" id="inp_confirmarSenha" placeholder="******">
     </div>
     <div class="inputs">
-      <label for="inp_confirmarSenha"> Você é Baterista? </label>
-      <select name="" id="idPergunta">
-        <option disabled selected id="idSelect" value="null"> Selecione uma opção </option>
+      <label for="idPergunta"> Você é Baterista? </label>
+      <select name="" id="idSelect">
+        <option disabled selected value="null"> Selecione uma opção </option>
         <option value="não"> NÃO </option>
         <option value="sim"> SIM </option>
 
@@ -68,8 +68,11 @@
 
     <button onclick="cadastrar()"> ENTRAR </button>
 
-  </div>
+    <div class="card_erro" id="cardErro">
+      <span id="mensagem_erro"></span>
+    </div>
 
+  </div>
 
 </body>
 
@@ -87,7 +90,7 @@
     var emailVar = inp_email.value;
     var senhaVar = inp_senha.value;
     var confirmacaoSenhaVar = inp_confirmarSenha.value;
-    var respostaVar = idSelect.value;
+    var perguntaVar = idSelect.value;
 
     // Verificando se há algum campo em branco
     if (
@@ -96,30 +99,30 @@
       emailVar == "" ||
       senhaVar == "" ||
       confirmacaoSenhaVar == "" ||
-      respostaVar == "null"
+      perguntaVar == "null"
     ) {
       cardErro.style.display = "block";
-      mensagem_erro.innerHTML =
-        "(Por favor, preencha todos os campos!)";
+      mensagem_erro.innerHTML = "(Mensagem de erro para campos em branco)";
+      //   alert('Campos em branco!');
 
+      //   // cardErro.style.display = "block";
+      //   // mensagem_erro.innerHTML =
+      //   //   "(Por favor, preencha todos os campos!)";
+
+      //   // finalizarAguardar();
+      //   return false;
+      // } else {
+      //   setInterval(sumirMensagem, 5000);
+      // }
+
+      // // Verificando se o código de ativação é de alguma empresa cadastrada
+      // for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
+      // if (listaEmpresasCadastradas[i].codigo_ativacao == codigoVar) {
+      //   idEmpresaVincular = listaEmpresasCadastradas[i].id
+      //   console.log("Código de ativação válido.");
       // finalizarAguardar();
-      return false;
-    } else {
-      setInterval(sumirMensagem, 5000);
-    }
 
-    // // Verificando se o código de ativação é de alguma empresa cadastrada
-    // for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
-    //   if (listaEmpresasCadastradas[i].codigo_ativacao == codigoVar) {
-    //     idEmpresaVincular = listaEmpresasCadastradas[i].id
-    //     console.log("Código de ativação válido.");
-    //     break;
-    //   } else {
-    //     cardErro.style.display = "block";
-    //     mensagem_erro.innerHTML = "(Mensagem de erro para código inválido)";
-    //     finalizarAguardar();
-    //   }
-    // }
+    }
 
     // Enviando o valor da nova input
     fetch("/usuarios/cadastrar", {
@@ -134,7 +137,7 @@
         sobrenomeServer: sobrenomeVar,
         emailServer: emailVar,
         senhaServer: senhaVar,
-        respostaServer: respostaVar,
+        perguntaServer: perguntaVar,
 
         // idEmpresaVincularServer: idEmpresaVincular
       }),
@@ -146,7 +149,7 @@
           cardErro.style.display = "block";
 
           mensagem_erro.innerHTML =
-            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+            "Cadastro realizado com sucesso! Entrando na tela de Login...";
 
           setTimeout(() => {
             window.location = "login.html";

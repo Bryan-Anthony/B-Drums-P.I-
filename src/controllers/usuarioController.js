@@ -1,4 +1,4 @@
-// var usuarioModel = require("../models/usuarioModel");
+var usuarioModel = require("../models/usuarioModel");
 // var aquarioModel = require("../models/aquarioModel");
 
 function autenticar(req, res) {
@@ -23,18 +23,18 @@ function autenticar(req, res) {
                         // aquarioModel.buscarAquariosPorEmpresa(resultadoAutenticar[0].empresaId)
                         // .then((resultadoAquarios) => {
 
-                        if (resultadoAquarios.length > 0) {
+                        // if (resultadoAquarios.length > 0) {
                             res.json({
-                                id: resultadoAutenticar[0].id,
+                                // id: resultadoAutenticar[0].id,
                                 email: resultadoAutenticar[0].email,
-                                nome: resultadoAutenticar[0].nome,
+                                // nome: resultadoAutenticar[0].nome,
                                 senha: resultadoAutenticar[0].senha,
                                 
                                 // aquarios: resultadoAquarios
                             });
-                        } else {
-                            res.status(204).json({ aquarios: [] });
-                        }
+                        // } else {
+                        //     res.status(204).json({ aquarios: [] });
+                        // }
                     } else if (resultadoAutenticar.length == 0) {
                         res.status(403).send("Email e/ou senha inválido(s)");
                     } else {
@@ -58,7 +58,7 @@ function cadastrar(req, res) {
     var sobrenome = req.body.sobrenomeServer;
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
-    var resposta = req.body.sobrenomeServer;
+    var pergunta = req.body.perguntaServer;
 
     // Faça as validações dos valores
     if (nome == undefined) {
@@ -69,12 +69,12 @@ function cadastrar(req, res) {
         res.status(400).send("Sua senha está undefined!");
     } else if (senha == undefined) {
         res.status(400).send("Sua empresa a vincular está undefined!");
-    } else if (resposta == undefined) {
+    } else if (pergunta == undefined) {
         res.status(400).send("Sua empresa a vincular está undefined!");
     } else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrar(nome, sobrenome, email, senha, resposta)
+        usuarioModel.cadastrar(nome, sobrenome, email, senha, pergunta)
             .then(
                 function (resultado) {
                     res.json(resultado);
