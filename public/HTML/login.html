@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> B'Drums - Login </title>
+    <link rel="stylesheet" href="../CSS/acesso.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Special+Gothic+Expanded+One&family=Titan+One&display=swap"
+        rel="stylesheet">
+
+</head>
+
+<body>
+
+
+    <div class="navbar">
+        <div class="logo">
+            <a href="home.html">
+                <img src="../IMG/logo.png" alt="Logo">
+            </a>
+        </div>
+
+        <div class="nav-links">
+            <a href="home.html"> INÍCIO </a>
+            <a href="cadastro.html"> CADASTRO </a>
+            <a href="login.html" style="color: burlywood;"> LOGIN </a>
+            <a href="criador.html"> CRIADOR </a>
+        </div>
+
+    </div>
+
+    <div class=" campos">
+
+        <div class="inputs">
+            <label for="inp_sobrenome"> Email: </label>
+            <input type="text" id="inp_email" placeholder="bryananthony@gmail.com">
+        </div>
+        <div class="inputs">
+            <label for="inp_email"> Senha: </label>
+            <input type="password" id="inp_senha" placeholder="******">
+        </div>
+
+        <a href="cadastro.html"> Ainda não tem conta? <a href=""></a>
+
+            <button onclick="entrar()"> ENTRAR </button>
+
+    </div>
+
+
+</body>
+
+</html>
+
+<script>
+
+    function entrar() {
+        aguardar();
+
+        var emailVar = inp_email.value;
+        var senhaVar = inp_senha.value;
+
+        if (emailVar == "" || senhaVar == "") {
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+            finalizarAguardar();
+            return false;
+        }
+        else {
+            setInterval(sumirMensagem, 5000)
+        }
+
+        console.log("FORM LOGIN: ", emailVar);
+        console.log("FORM SENHA: ", senhaVar);
+
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.ID_USUARIO = json.id;
+                    // sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
+
+                    setTimeout(function () {
+                        window.location = "./dashboard/cards.html";
+                    }, 1000); // apenas para exibir o loading
+
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    finalizarAguardar(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
+
+    function sumirMensagem() {
+        cardErro.style.display = "none"
+    }
+
+</script>
+
+</script>

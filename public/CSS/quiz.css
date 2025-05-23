@@ -1,0 +1,146 @@
+/* Não usar pure white or pure black: https://uxplanet.org/basicdesign-never-use-pure-black-in-typography-36138a3327a6 */
+/* The 4-point grid system: https://medium.com/@sainzkike/controlling-spacing-in-design-systems-multiple-spacing-9bf1afec87f */
+
+:root {
+    --primary-brand-color: burlywood;
+    --secondary-brand-color: #07366b;
+    --success: #198754;
+    --success-dark: #095c36;
+    --success-light: #9dd3ba;
+    --warning: #ffc107;
+    --warning-dark: #705400;
+    --warning-light: #fdebb3;
+    --danger: #dc3545;
+    --danger-dark: #990c19;
+    --danger-light: #f0c1c6;
+    --new-gray: #CCCCCC;
+    --new-black: #212427;
+    --new-white: #E8E8E8;
+}
+
+body {
+    color: var(--new-black);
+    background-color: var(--new-white);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: black;
+    margin: 0;
+
+    /* font-family: "Titan One", sans-serif;
+    font-weight: 300;
+    font-style: normal; */
+}
+
+button {
+    font-family: monospace;
+    font-weight: bold;
+}
+
+.flex-colunar {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.width-fit-content {
+    width: fit-content;
+}
+
+.border-primary {
+    border: 3px solid var(--primary-brand-color);
+}
+
+.border-secondary {
+    border: 3px solid var(--secondary-brand-color);
+}
+
+.padding-8 {
+    padding: 8px;
+}
+
+.text-bold {
+    font-weight: bold;
+}
+
+.text-success-with-bg {
+    color: var(--success-dark);
+    background-color: var(--success-light);
+}
+
+.text-warning-with-bg {
+    color: var(--warning-dark);
+    background-color: var(--warning-light);
+}
+
+.text-danger-with-bg {
+    color: var(--danger-dark);
+    background-color: var(--danger-light);
+}
+
+.text-new-gray {
+    color: var(--new-gray);
+}
+
+#pontuacaoEJogo {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+    gap: 15px;
+    margin: 0;
+}
+
+.bt-voltar {
+    position: absolute;
+    top: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bt-voltar u {
+    font-family: "Titan One", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    color: white;
+    margin-left: 120px;
+}
+
+
+.bt-voltar img {
+    position: absolute;
+    height: 40px;
+    width: 40px;
+}
+
+
+.logo img {
+    width: 170px;
+    height: 170px;
+    border-radius: 2px;
+    display: block;
+}
+
+.jogo,
+.pontucao {
+    border-radius: 7px;
+}
+
+#btnSubmeter,
+#btnProx,
+#btnConcluir,
+#btnTentarNovamente {
+    border-radius: 7px;
+    font-size: 17px;
+}
+
+#btnIniciarQuiz {
+    font-size: 50px;
+    border-radius: 15px;
+}

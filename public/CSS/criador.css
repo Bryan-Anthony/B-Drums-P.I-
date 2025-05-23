@@ -1,0 +1,115 @@
+body {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 100vh;
+
+    font-family: "Titan One", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+
+    justify-content: center;
+    align-items: center;
+    background-color: #000000;
+    /* background-image: url('../IMG/fundo-cad.png');
+    background-size: cover;
+    background-position: center; */
+    /* background-color: rgb(00, 02, 14); */
+
+
+    /* Alinha ao centro na vertical */
+
+    /* backdrop-filter: blur(px); efeito de desfoque */
+    margin: 0;
+}
+
+
+/* NAVBAR */
+
+.navbar {
+    background-color: #0000006a;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px;
+    height: 45px;
+    border-radius: 10px;
+    font-size: 20px;
+
+}
+
+.logo {
+    position: absolute;
+    left: 70px;
+    top: 0px;
+    z-index: 1001;
+
+}
+
+.logo img {
+    width: 125px;
+    height: 125px;
+    border-radius: 2px;
+    display: block;
+}
+
+
+.nav-links {
+    display: flex;
+    gap: 70px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+}
+
+.nav-links a:hover {
+    color: black;
+    border-radius: 7px;
+    background-color: #ffffff;
+}
+
+/*STYLE TELA E INFORMAÇÕES*/
+
+.info {
+    display: flex;
+    gap: 50px;
+    justify-content: center;
+    align-items: center;
+}
+
+.video {
+    width: 33%;
+    height: 600px;
+    margin-top: 83px;
+}
+
+video {
+    /* position: absolute;
+    left: 25px;
+    top: 85px; */
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    border-style: solid 2px;
+    border-bottom: 3px solid rgb(255, 255, 255);
+}
+
+.bio {
+    color: #ffffff;
+    width: 60%;
+    right: 15px;
+}
+
+.bio i {
+    display: inline-block;
+ width: 100%;
+    text-align: center;
+}
