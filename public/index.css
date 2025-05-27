@@ -29,6 +29,7 @@ body {
 .navbar {
     background-color: #0000006a;
     position: fixed;
+    top: 0;
     width: 100%;
     z-index: 1000;
 
@@ -37,9 +38,7 @@ body {
     align-items: center;
     padding: 10px 20px;
     height: 45px;
-    border-radius: 10px;
     font-size: 20px;
-
 }
 
 .logo {
@@ -77,8 +76,15 @@ body {
 
 
 /* STYLE HOME */
+
 /* img de fundo */
-.fundo-home {
+
+.container {
+    height: 100vh;
+    width: 100vw;
+}
+
+.fundo-home img {
     margin-top: 0%;
     width: 100%;
     height: 100%;
@@ -112,8 +118,10 @@ body {
     justify-content: space-around;
     flex-direction: row;
     color: #ffffff;
-    background: #000;
-    height: 10vh;
+    background: #f2ff004f;
+    height: 7vh;
+    border-radius: 10px;
+    z-index: 1100;
 }
 
 .sobre-img {
@@ -130,7 +138,7 @@ body {
     gap: 50px;
 }
 
-/* .contato {
+.contato {
     width: 94%;
     text-align: center;
     display: flex;
@@ -138,7 +146,7 @@ body {
     justify-content: center;
     align-items: center;
     gap: 50px;
-} */
+}
 
 .sobre img {
     display: flex;
