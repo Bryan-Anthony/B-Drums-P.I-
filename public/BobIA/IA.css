@@ -1,0 +1,144 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: black;
+}
+
+/* NAVBAR */
+.navbar {
+    font-family: "Titan One", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    background-color: #0000006a;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px;
+    height: 45px;
+    font-size: 20px;
+}
+
+.logo {
+    position: absolute;
+    left: 70px;
+    top: 0px;
+    z-index: 2;
+}
+
+.logo img {
+    width: 125px;
+    height: 125px;
+    border-radius: 2px;
+    display: block;
+}
+
+.nav-links {
+    display: flex;
+    gap: 70px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+}
+
+.nav-links a:hover {
+    color: black;
+    border-radius: 7px;
+    background-color: #ffffff;
+}
+
+
+/* STYLE IA */
+
+#container {
+    font-family: "Special Gothic Expanded One", sans-serif;
+    /* font-weight: 400; */
+    font-style: normal;
+    width: 99vw;
+    height: 90vh;
+    text-align: center;
+    align-items: center;
+    margin-top: 75px;
+}
+
+h3 {
+    color: white;
+    margin-top: 5px;
+}
+
+#container img {
+    width: 90px;
+    height: 90px;
+    border-radius: 2px;
+    /* margin: 0; */
+    margin-top: 20px;
+}
+
+h1 {
+    color: #1F2A44;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+textarea[type="text"] {
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 5px;
+    width: 400px;
+}
+
+/* button {
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 5px;
+    } */
+
+button {
+    background-color: #ffffff;
+    padding: 8px;
+    width: 200px;
+    border-radius: 7px;
+    text-align-last: center;
+    font-size: 16px;
+    cursor: pointer;
+
+    font-family: "Special Gothic Expanded One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+
+    /* font-family: "Special Gothic Expanded One", sans-serif;
+    font-weight: 400;
+    font-style: normal; */
+}
+
+button:hover {
+    background-color: black;
+    color: white;
+}
+
+#containerRespostas {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#resposta {
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #D0D3D4;
+    border: 1px solid #63666A;
+    text-align: center;
+    display: none;
+    width: 60vw;
+    display: none;
+    justify-content: center;
+}

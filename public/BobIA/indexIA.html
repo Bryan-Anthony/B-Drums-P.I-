@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BobIA</title>
+    <link rel="stylesheet" href="IA.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Special+Gothic+Expanded+One&family=Titan+One&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="navbar">
+        <div class="logo">
+            <a href="home.html">
+                <img src="../IMG/logo.png" alt="Logo">
+            </a>
+        </div>
+
+        <div class="nav-links">
+            <a href="../index.html">INÍCIO</a>
+            <a href="../HTML/quiz1.html"> QUIS 1 </a>
+            <a href="../HTML/quiz2.html"> QUIS 2 </a>
+            <a href="../HTML/bateria virtual.html"> BATERIA VIRTUAL </a>
+        </div>
+    </div>
+
+    <div id="container">
+
+        <h3> Parceria com</h3>
+        <img src="./IMG/bob_logo.png" alt="">
+
+        <h1> BobIA </h1>
+
+        <textarea id="pergunta" type="text" placeholder="Digite uma pergunta sobre bateria..."></textarea>
+
+        <br><br>
+
+        <button onclick="gerarResposta()"> Responder 🥁</button>
+
+        <h3>Resposta da IA:</h3>
+        <div id="containerRespostas">
+            <div id="resposta"></div>
+        </div>
+    </div>
+
+
+    <script>
+
+        async function gerarResposta() {
+            const pergunta = document.getElementById('pergunta').value;
+
+            const response = await fetch('/perguntar', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ pergunta })
+            });
+
+            const data = await response.json();
+            var resposta = document.getElementById('resposta');
+            resposta.style.display = 'flex';
+            resposta.innerText = data.resultado;
+        }
+
+    </script>
+
+</body>
+
+</html>

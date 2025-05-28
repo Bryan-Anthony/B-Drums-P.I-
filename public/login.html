@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> B'Drums - Login </title>
-    <link rel="stylesheet" href="../public/CSS/acesso.css">
+    <link rel="stylesheet" href="./CSS/acesso.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,7 +21,7 @@
     <div class="navbar">
         <div class="logo">
             <a href="home.html">
-                <img src="../public/IMG/logo.png" alt="Logo">
+                <img src="../" alt="Logo">
             </a>
         </div>
 
@@ -49,6 +49,10 @@
 
             <button onclick="entrar()"> ENTRAR </button>
 
+            <div class="card_erro" id="cardErro">
+                <span id="mensagem_erro"></span>
+            </div>
+
     </div>
 
 
@@ -60,7 +64,7 @@
 
 
     function entrar() {
-        aguardar();
+        // aguardar();
 
         var emailVar = inp_email.value;
         var senhaVar = inp_senha.value;
@@ -68,15 +72,15 @@
         if (emailVar == "" || senhaVar == "") {
             cardErro.style.display = "block"
             mensagem_erro.innerHTML = "(Mensagem de erro para campos em branco)";
-            finalizarAguardar();
+            // finalizarAguardar();
             return false;
         }
         else {
             setInterval(sumirMensagem, 5000)
         }
 
-        console.log("FORM LOGIN: ", emailVar);
-        console.log("FORM SENHA: ", senhaVar);
+        // console.log("FORM LOGIN: ", emailVar);
+        // console.log("FORM SENHA: ", senhaVar);
 
         fetch("/usuarios/autenticar", {
             method: "POST",
@@ -102,7 +106,7 @@
                     // sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
 
                     setTimeout(function () {
-                        window.location = "./dashboard/cards.html";
+                        window.location = "./BobIA/indexIA.html";
                     }, 1000); // apenas para exibir o loading
 
                 });
@@ -112,8 +116,8 @@
                 console.log("Houve um erro ao tentar realizar o login!");
 
                 resposta.text().then(texto => {
-                    console.error(texto);
-                    finalizarAguardar(texto);
+                    // console.error(texto);
+                    // finalizarAguardar(texto);
                 });
             }
 
