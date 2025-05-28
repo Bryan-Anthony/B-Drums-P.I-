@@ -21,6 +21,7 @@ body {
 
     /* backdrop-filter: blur(px); efeito de desfoque */
     margin: 0;
+    background-image: url('../public/IMG/fundo\ cx.jpg');
 }
 
 
@@ -31,7 +32,7 @@ body {
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 1000;
+    z-index: 1;
 
     display: flex;
     justify-content: center;
@@ -45,8 +46,7 @@ body {
     position: absolute;
     left: 70px;
     top: 0px;
-    z-index: 1001;
-
+    z-index: 2;
 }
 
 .logo img {
@@ -55,7 +55,6 @@ body {
     border-radius: 2px;
     display: block;
 }
-
 
 .nav-links {
     display: flex;
@@ -91,7 +90,8 @@ body {
     background-size: 100% 100%;
     object-fit: cover;
     width: 100%;
-    height: 90vh;
+    height: 98vh;
+    z-index: 1;
 }
 
 
@@ -121,7 +121,7 @@ body {
     background: #f2ff004f;
     height: 7vh;
     border-radius: 10px;
-    z-index: 1100;
+    z-index: 2;
 }
 
 .sobre-img {
@@ -133,7 +133,7 @@ body {
     color: #ffffff;
 }
 
-.sobre p {
+.sobre {
     margin-bottom: 1px;
     gap: 50px;
 }

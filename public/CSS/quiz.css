@@ -28,10 +28,6 @@ body {
     height: 100vh;
     background-color: black;
     margin: 0;
-
-    /* font-family: "Titan One", sans-serif;
-    font-weight: 300;
-    font-style: normal; */
 }
 
 button {
@@ -55,6 +51,7 @@ button {
 
 .border-secondary {
     border: 3px solid var(--secondary-brand-color);
+    width: 80vw;
 }
 
 .padding-8 {
@@ -110,6 +107,7 @@ button {
     font-style: normal;
     color: white;
     margin-left: 120px;
+    cursor: pointer;
 }
 
 
@@ -117,6 +115,7 @@ button {
     position: absolute;
     height: 40px;
     width: 40px;
+    cursor: pointer;
 }
 
 

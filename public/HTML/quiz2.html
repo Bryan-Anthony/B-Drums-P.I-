@@ -19,7 +19,7 @@
     <a href="">
         <div class="bt-voltar">
             <img src="../IMG/seta back.png" alt="">
-            <u>Desistir</u>
+            <u> Desistir </u>
         </div>
     </a>
 
@@ -35,10 +35,10 @@
 
         <div id="pontuacao" class="flex-colunar width-fit-content border-primary pontucao">
 
-            <!-- <div id="pontuacaoDuranteJogo" class="flex-colunar padding-8">
+            <div id="pontuacaoDuranteJogo" class="flex-colunar padding-8">
                 <span class="width-fit-content"> Quantidade de acertos: <span id="spanCertas"></span></span>
                 <span class="width-fit-content"> Quantidade de erros: <span id="spanErradas"></span></span>
-            </div> -->
+            </div>
 
             <div id="pontuacaoFinalJogo" class="flex-colunar padding-8">
                 <span id="pontuacaoFinal" class="width-fit-content">Pontuação Final:
@@ -84,10 +84,12 @@
             </div>
 
             <div id="botoes" class="flex-colunar padding-8 botoes">
+
                 <button onclick="submeter()" id="btnSubmeter">Confirmar resposta</button>
                 <button onclick="avancar()" id="btnProx" disabled>Avançar para próxima questão</button>
-                <button onclick="finalizar()" id="btnConcluir" disabled>Finalizar Quiz</button>
+                <!-- <button onclick="finalizar()" id="btnConcluir" disabled>Finalizar Quiz</button> -->
                 <button onclick="tentarNovamente()" id="btnTentarNovamente" disabled>Tentar novamente</button>
+
             </div>
 
         </div>
@@ -99,86 +101,86 @@
 <script>
     const listaDeQuestoes = [
 
-    {
-        pergunta: "Qual função principal da caixa na bateria?",
-        alternativaA: "Criar efeitos sonoros",
-        alternativaB: "Dar base harmônica",
-        alternativaC: "Marcar o tempo principal",
-        alternativaD: "Sustentar as notas graves",
-        alternativaCorreta: "alternativaC"
-    },
-    {
-        pergunta: "Como se chama o ritmo básico do rock na bateria?",
-        alternativaA: "Shuffle",
-        alternativaB: "Blast beat",
-        alternativaC: "Break beat",
-        alternativaD: "4 por 4 (four-on-the-floor)",
-        alternativaCorreta: "alternativaD"
-    },
-    {
-        pergunta: "Qual das opções é uma marca famosa de bateria?",
-        alternativaA: "Gibson",
-        alternativaB: "Fender",
-        alternativaC: "Ludwig",
-        alternativaD: "Steinway",
-        alternativaCorreta: "alternativaC"
-    },
-    {
-        pergunta: "O que é uma virada na bateria?",
-        alternativaA: "Erro de tempo",
-        alternativaB: "Uso do pedal duplo",
-        alternativaC: "Preenchimento rítmico entre compassos",
-        alternativaD: "Parar de tocar repentinamente",
-        alternativaCorreta: "alternativaC"
-    },
-    {
-        pergunta: "Como é chamada a técnica de tocar com uma baqueta em cada mão em velocidades extremas?",
-        alternativaA: "Rudimento",
-        alternativaB: "Stick trick",
-        alternativaC: "Blast beat",
-        alternativaD: "Double stroke",
-        alternativaCorreta: "alternativaC"
-    },
-    {
-        pergunta: "Qual é o nome da técnica onde a baqueta “quica” no tambor para criar múltiplos sons?",
-        alternativaA: "Flam",
-        alternativaB: "Stroke",
-        alternativaC: "Ghost note",
-        alternativaD: "Rebound",
-        alternativaCorreta: "alternativaD"
-    },
-    {
-        pergunta: "Qual desses gêneros musicais exige muita velocidade e resistência do baterista?",
-        alternativaA: "Jazz",
-        alternativaB: "Pop",
-        alternativaC: "Death Metal",
-        alternativaD: "MPB",
-        alternativaCorreta: "alternativaC"
-    },
-    {
-        pergunta: "Quantos rudimentos existem ao total?",
-        alternativaA: "35",
-        alternativaB: "45",
-        alternativaC: "40",
-        alternativaD: "32",
-        alternativaCorreta: "alternativaC"
-    },
-    {
-        pergunta: "Qual desses rudimentos é uma combinação de direita-esquerda-direita-direita?",
-        alternativaA: "Flam",
-        alternativaB: "Paradiddle",
-        alternativaC: "Roll",
-        alternativaD: "Drag",
-        alternativaCorreta: "alternativaB"
-    },
-    {
-        pergunta: "O que são 'ghost notes' na bateria?",
-        alternativaA: "Notas acentuadas",
-        alternativaB: "Notas tocadas em pratos",
-        alternativaC: "Notas tocadas com muito volume",
-        alternativaD: "Notas suaves quase imperceptíveis",
-        alternativaCorreta: "alternativaD"
-    }
+        {
+            pergunta: "Qual função principal da caixa na bateria?",
+            alternativaA: "Criar efeitos sonoros",
+            alternativaB: "Dar base harmônica",
+            alternativaC: "Marcar o tempo principal",
+            alternativaD: "Sustentar as notas graves",
+            alternativaCorreta: "alternativaC"
+        },
+        {
+            pergunta: "Como se chama o ritmo básico do rock na bateria?",
+            alternativaA: "Shuffle",
+            alternativaB: "Blast beat",
+            alternativaC: "Break beat",
+            alternativaD: "4 por 4 (four-on-the-floor)",
+            alternativaCorreta: "alternativaD"
+        },
+        {
+            pergunta: "Qual das opções é uma marca famosa de bateria?",
+            alternativaA: "Gibson",
+            alternativaB: "Fender",
+            alternativaC: "Ludwig",
+            alternativaD: "Steinway",
+            alternativaCorreta: "alternativaC"
+        },
+        {
+            pergunta: "O que é uma virada na bateria?",
+            alternativaA: "Erro de tempo",
+            alternativaB: "Uso do pedal duplo",
+            alternativaC: "Preenchimento rítmico entre compassos",
+            alternativaD: "Parar de tocar repentinamente",
+            alternativaCorreta: "alternativaC"
+        },
+        {
+            pergunta: "Como é chamada a técnica de tocar com uma baqueta em cada mão em velocidades extremas?",
+            alternativaA: "Rudimento",
+            alternativaB: "Stick trick",
+            alternativaC: "Blast beat",
+            alternativaD: "Double stroke",
+            alternativaCorreta: "alternativaC"
+        },
+        {
+            pergunta: "Qual é o nome da técnica onde a baqueta “quica” no tambor para criar múltiplos sons?",
+            alternativaA: "Flam",
+            alternativaB: "Stroke",
+            alternativaC: "Ghost note",
+            alternativaD: "Rebound",
+            alternativaCorreta: "alternativaD"
+        },
+        {
+            pergunta: "Qual desses gêneros musicais exige muita velocidade e resistência do baterista?",
+            alternativaA: "Jazz",
+            alternativaB: "Pop",
+            alternativaC: "Death Metal",
+            alternativaD: "MPB",
+            alternativaCorreta: "alternativaC"
+        },
+        {
+            pergunta: "Quantos rudimentos existem ao total?",
+            alternativaA: "35",
+            alternativaB: "45",
+            alternativaC: "40",
+            alternativaD: "32",
+            alternativaCorreta: "alternativaC"
+        },
+        {
+            pergunta: "Qual desses rudimentos é uma combinação de direita-esquerda-direita-direita?",
+            alternativaA: "Flam",
+            alternativaB: "Paradiddle",
+            alternativaC: "Roll",
+            alternativaD: "Drag",
+            alternativaCorreta: "alternativaB"
+        },
+        {
+            pergunta: "O que são 'ghost notes' na bateria?",
+            alternativaA: "Notas acentuadas",
+            alternativaB: "Notas tocadas em pratos",
+            alternativaC: "Notas tocadas com muito volume",
+            alternativaD: "Notas suaves quase imperceptíveis",
+            alternativaCorreta: "alternativaD"
+        }
 
     ]
 
