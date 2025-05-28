@@ -6,8 +6,8 @@
 comandos para mysql server
 */
 
-CREATE DATABASE drum;
-USE drum;
+CREATE DATABASE bdrum;
+USE bdrum;
 
 CREATE TABLE IF NOT EXISTS usuario(
 idUsuario INT PRIMARY KEY AUTO_INCREMENT,
@@ -20,8 +20,8 @@ pergunta CHAR(3) NOT NULL
 		CHECK (pergunta IN ( 'sim', 'não'))
 );
 
-CREATE TABLE IF NOT EXISTS quiz(
-idQuiz INT PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS quis(
+idQuis INT PRIMARY KEY AUTO_INCREMENT,
 nome VARCHAR(45) NOT NULL,
 descricao VARCHAR(45) NOT NULL
 );
@@ -29,7 +29,7 @@ descricao VARCHAR(45) NOT NULL
 CREATE TABLE IF NOT EXISTS respostaUsuario(
 id INT AUTO_INCREMENT,
 fkUsuario INT,
-fkQuiz INT ,
+fkQuis INT ,
 acertos INT NOT NULL,
 erros INT NOT NULL,
 nota DECIMAL (4,2) NOT NULL,
@@ -41,3 +41,46 @@ CONSTRAINT respostaQuiz
 CONSTRAINT pkComposta
 	PRIMARY KEY (id, fkUsuario, fkQuiz)
 );
+
+INSERT INTO usuario (nome, sobrenome, email, senha, pergunta) VALUES
+('Ana', 'Silva', 'ana.silva@email.com', '1234abcd', 'sim'),
+('Bruno', 'Costa', 'bruno.costa@email.com', 'abcd1234', 'não'),
+('Carla', 'Santos', 'carla.santos@email.com', 'senha123', 'sim'),
+('Diego', 'Souza', 'diego.souza@email.com', 'qwerty12', 'não'),
+('Elaine', 'Oliveira', 'elaine.oli@email.com', 'teste456', 'sim'),
+('Felipe', 'Lima', 'felipe.lima@email.com', 'abc12345', 'não'),
+('Giovana', 'Ferreira', 'gi.ferreira@email.com', 'giov2024', 'sim'),
+('Henrique', 'Almeida', 'henrique.al@email.com', 'pass9876', 'não'),
+('Isabela', 'Moura', 'isa.moura@email.com', 'moura999', 'sim'),
+('João', 'Pereira', 'joao.pereira@email.com', 'joao2025', 'não');
+
+select * from usuario;
+
+SELECT 
+ROUND((AVG (CASE
+WHEN pergunta = 'sim' THEN 1
+ELSE 0
+END) * 100), 2)  AS 'Média de sim',
+ROUND((AVG (CASE
+WHEN pergunta = 'não' THEN 1
+ELSE 0
+END)* 100), 2) AS 'Média de não'
+FROM usuario;
+
+
+SELECT
+ROUND((avg(case when pergunta = 'sim' then 1 else 0 end)*100), 2)as media_sim, 
+ROUND((avg(case when pergunta = 'nao' then 1 else 0 end)* 100), 2)as media_nao
+from usuario;
+
+SELECT
+u.idUsuario,
+u.nome,
+r.acertos AS Acertos,
+r.erros AS Erros,
+q.idQuis,
+q.nome AS 'Nome Quiz'
+FROM usuario u JOIN respostaUsuario r
+ON u.idUsuario = r.fkUsuario
+JOIN quis q
+ON q.idQuiz = fkQuis;

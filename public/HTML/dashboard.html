@@ -7,13 +7,93 @@
     <title> B'Drums - Dashboard </title>
     <link rel="stylesheet" href="dashboard.css">
 
+    <link rel="icon" href="../IMG/logo.png" type="image/png">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Special+Gothic+Expanded+One&family=Titan+One&display=swap"
         rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </head>
 
 <body>
-    
+    <div class="container">
+
+        <div>
+            <canvas id="myChart1"></canvas>
+        </div>
+
+
+        <div>
+            <canvas id="myChart2"></canvas>
+        </div>
+
+    </div>
 </body>
+
+<script>
+    function a() {
+        const label_quiz = [];
+
+        const data_quiz = {
+            labels: label_quiz,
+            datasets: [{
+                label: '# of Votes',
+                data: [],
+                borderWidth: 1
+            }]
+        };
+
+        const config_quiz = {
+            type: 'pie',
+            data: data_quiz,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Votes by Color'
+                    }
+                }
+            }
+        };
+        var resposta = ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange']
+        var resposta_data = [12, 19, 3, 5, 2, 3]
+
+        for (let i = 0; i < resposta.length; i++) {
+            var registro = resposta[i]
+            label_quiz.push(resposta[i])
+            config_quiz.data.datasets[0].data.push(resposta_data[i])
+        }
+        
+        const ctx1 = document.getElementById('myChart1');
+        const grafico_quiz = new Chart(ctx1, config_quiz);
+    }
+    window.addEventListener('load', a)
+
+    const ctx2 = document.getElementById('myChart2');
+    new Chart(ctx2, {
+        type: 'pie',
+        data: {
+            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            datasets: [{
+                label: '# of Votes',
+                data: [12, 19, 3, 5, 2, 3],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
