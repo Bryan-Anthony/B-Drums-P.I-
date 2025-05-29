@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> B'Drums - Dashboard </title>
-    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="../CSS/dashboard.css">
 
     <link rel="icon" href="../IMG/logo.png" type="image/png">
 
@@ -20,15 +20,47 @@
 </head>
 
 <body>
+
+
     <div class="container">
 
-        <div>
-            <canvas id="myChart1"></canvas>
-        </div>
+        <a href="menu.html">
+            <div class="bt-voltar">
+                <img src="../IMG/seta back.png" alt="">
+                <u> Voltar </u>
+            </div>
+        </a>
+
+        <h1> DASHBOARD</h1>
+        <h3>Dados do Quiz e de Usuarios que acessaram o site </h3>
+
+        <div class="container-indicadores">
+
+            <div class="kpis">
+                <div class="kpi">
+
+                </div>
+
+                <div class="kpi">
+
+                </div>
+
+                <div class="kpi">
+
+                </div>
+            </div>
+
+            <div class="graficos">
+                <div class="grafico">
+                    <canvas id="myChart1"></canvas>
+                </div>
 
 
-        <div>
-            <canvas id="myChart2"></canvas>
+                <div class="grafico">
+                    <canvas id="myChart2"></canvas>
+                </div>
+            </div>
+
         </div>
 
     </div>
@@ -71,7 +103,7 @@
             label_quiz.push(resposta[i])
             config_quiz.data.datasets[0].data.push(resposta_data[i])
         }
-        
+
         const ctx1 = document.getElementById('myChart1');
         const grafico_quiz = new Chart(ctx1, config_quiz);
     }
