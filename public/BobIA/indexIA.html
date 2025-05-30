@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BobIA</title>
+    <title> B'Drums & BobIA</title>
     <link rel="stylesheet" href="IA.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,13 +12,16 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Special+Gothic+Expanded+One&family=Titan+One&display=swap"
         rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
 
 <body>
 
     <div class="navbar">
         <div class="logo">
-            <a href="home.html">
+            <a href="../index.html">
                 <img src="./IMG/logo.png" alt="Logo">
             </a>
         </div>
@@ -38,36 +41,90 @@
 
         <h1> BobIA </h1>
 
-        <textarea id="pergunta" type="text" placeholder="Digite uma pergunta sobre bateria..."></textarea>
+        <!-- <textarea id="pergunta" type="text" placeholder="Digite uma pergunta sobre bateria..."></textarea> -->
 
         <br><br>
 
-        <button onclick="gerarResposta()"> Responder 🥁</button>
+        <button onclick="gerarResposta()">😄 Me diga uma curiosidade 😄</button>
 
         <h3>Resposta da IA:</h3>
+
         <div id="containerRespostas">
             <div id="resposta"></div>
+
         </div>
     </div>
 
 
     <script>
 
+        var exibir = 'Um instante, consultando IA...'
+
         async function gerarResposta() {
-            const pergunta = document.getElementById('pergunta').value;
+
+            const curiosidades = [
+                "Por que os bateristas usam baquetas diferentes para estilos musicais distintos?",
+                "Qual é a função do surdo em uma bateria?",
+                "Por que o prato de condução se chama 'ride'?",
+                "Qual a diferença entre uma bateria acústica e uma eletrônica?",
+                "O que é afinação de tambores e como ela afeta o som?",
+                "Por que os bateristas usam abafadores nos tambores?",
+                "De onde vem o nome 'hi-hat'?",
+                "É possível tocar bateria sem usar os pés? Como isso muda o estilo?",
+                "Como a posição dos tambores influencia a técnica de um baterista?",
+                "Por que alguns bateristas preferem toques cruzados no hi-hat, enquanto outros não?",
+                "Qual a diferença entre uma bateria acústica e uma eletrônica?",
+                "Por que o bumbo é tocado com o pé e não com as mãos?",
+                "O que é o groove e qual a sua importância na bateria?",
+                "Quem foi considerado o primeiro grande baterista da história da música moderna?",
+                "Pra que serve o surdo na bateria?",
+                "É possível tocar bateria sem conhecer teoria musical?",
+                "Como o tipo de baqueta influencia no som da bateria?",
+                "O que é pedal duplo e como ele muda a sonoridade do bumbo?",
+                "Por que alguns bateristas tocam com fones de ouvido?",
+                "Quais são os rudimentos mais importantes para iniciantes na bateria?"
+            ];
+
+            const sorteio = Math.floor(Math.random() * curiosidades.length);
+
+
+            var repost = curiosidades[sorteio];
+
+            // const pergunta = curiosidades.indexOf(sorteio).value;
+
+            // var sorteio = (Math.random() * 10 + 0.5).toFixed();
+            // var resposta = curiosidades[sorteio]
+            // txt.innerHTML = resposta;
+
+
+            // const pergunta = document.getElementById('pergunta').value;
+            Swal.fire({
+                title: "Estamos consultando a IA...",
+                text: ` Curiosidade: ${repost}`,
+                imageUrl: "logo.png",
+                imageWidth: 400,
+                imageHeight: 200,
+                imageAlt: "...."
+            });
 
             const response = await fetch('/perguntar', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ pergunta })
+                body: JSON.stringify({ pergunta: repost })
+
             });
+
+            // console.log("Enviando pergunta:", repost);
+            // console.log("Recebi a pergunta:", pergunta);
+
 
             const data = await response.json();
             var resposta = document.getElementById('resposta');
             resposta.style.display = 'flex';
             resposta.innerText = data.resultado;
+
         }
 
     </script>

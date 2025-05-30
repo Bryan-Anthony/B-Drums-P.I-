@@ -46,6 +46,7 @@ app.listen(PORTA_SERVIDOR, () => {
 app.post("/perguntar", async (req, res) => {
     const pergunta = req.body.pergunta;
 
+
     try {
         const resultado = await gerarResposta(pergunta);
         res.json({ resultado });
@@ -74,6 +75,7 @@ async function gerarResposta(mensagem) {
         return resposta;
     } catch (error) {
         console.error(error);
+
         throw error;
     }
 }

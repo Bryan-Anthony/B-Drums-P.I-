@@ -38,15 +38,15 @@
 
             <div class="kpis">
                 <div class="kpi">
-
+                    <span id="media_sim"></span>
                 </div>
 
                 <div class="kpi">
-
+                    <span id="media_nao"></span>
                 </div>
 
                 <div class="kpi">
-
+                    <span id=""></span>
                 </div>
             </div>
 
@@ -67,21 +67,32 @@
 </body>
 
 <script>
-    function a() {
-        const label_quiz = [];
 
-        const data_quiz = {
+    var acertos1 = 0;
+    var erros1 = 0;
+    var acertos2 = 0;
+    var erros2 = 0;
+
+
+    function plotarGrafico() {
+        const label_quiz = ['acertos', 'erros'];
+
+        // QUIS 1
+
+
+        const data_quiz1 = {
             labels: label_quiz,
             datasets: [{
-                label: '# of Votes',
-                data: [],
+                label: '',
+                data: [acertos1, erros1],
+                backgroundColor: ['#4169E1', '#F44336'],
                 borderWidth: 1
             }]
         };
 
-        const config_quiz = {
+        const config_quiz1 = {
             type: 'pie',
-            data: data_quiz,
+            data: data_quiz1,
             options: {
                 responsive: true,
                 plugins: {
@@ -90,42 +101,124 @@
                     },
                     title: {
                         display: true,
-                        text: 'Votes by Color'
+                        text: '1° QUIS'
                     }
                 }
             }
         };
-        var resposta = ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange']
-        var resposta_data = [12, 19, 3, 5, 2, 3]
 
-        for (let i = 0; i < resposta.length; i++) {
-            var registro = resposta[i]
-            label_quiz.push(resposta[i])
-            config_quiz.data.datasets[0].data.push(resposta_data[i])
-        }
 
-        const ctx1 = document.getElementById('myChart1');
-        const grafico_quiz = new Chart(ctx1, config_quiz);
-    }
-    window.addEventListener('load', a)
+        // QUIS 2
 
-    const ctx2 = document.getElementById('myChart2');
-    new Chart(ctx2, {
-        type: 'pie',
-        data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        const data_quiz2 = {
+            labels: label_quiz,
             datasets: [{
-                label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
+                label: '',
+                data: [acertos2, erros2],
+                backgroundColor: ['#4169E1', '#F44336'],
                 borderWidth: 1
             }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
+        };
+
+        const config_quiz2 = {
+            type: 'pie',
+            data: data_quiz2,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: '2° QUIS'
+                    }
                 }
             }
-        }
-    });
+        };
+
+        const ctx1 = document.getElementById('myChart1');
+        const ctx2 = document.getElementById('myChart2');
+
+        const grafico_quiz1 = new Chart(ctx1, config_quiz1);
+        const grafico_quiz2 = new Chart(ctx2, config_quiz2);
+    }
+
+
+
+    function obterKpi() {
+
+        fetch(`/medidas/ultimas`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+
+                    media_sim.innerHTML = 'Porcentagem de usuarios que SÃO Bateristas <br><br>';
+                    media_sim.innerHTML += resposta[0].media_sim + '%';
+                    media_nao.innerHTML = 'Porcentagem de usuarios que NÃO são Bateristas <br><br>';
+                    media_nao.innerHTML += resposta[0].media_nao + '%';
+
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    }
+
+    function ultimaKpi() {
+        fetch(`/medidas/tempo-real/${idUsuario}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+
+                    acertos1 = resposta[0].ACERTOS;
+                    erros1 = resposta[0].ERROS;
+                    if (resposta.length == 2) {
+                        acertos2 = resposta[1].ACERTOS;
+                        erros2 = resposta[1].ERROS;
+                    }
+                    plotarGrafico();
+
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+
+    }
+
+    function obterDados() {
+
+        var idUsuario = sessionStorage.ID_USUARIO;
+        console.log(idUsuario);
+
+        fetch(`/medidas/tempo-real/${idUsuario}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+
+                    acertos1 = resposta[0].ACERTOS;
+                    erros1 = resposta[0].ERROS;
+                    if (resposta.length == 2) {
+                        acertos2 = resposta[1].ACERTOS;
+                        erros2 = resposta[1].ERROS;
+                    }
+                    plotarGrafico();
+
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    }
+
+    window.addEventListener('load', obterKpi);
+    window.addEventListener('load', ultimaKpi);
+    window.addEventListener('load', obterDados);
 </script>

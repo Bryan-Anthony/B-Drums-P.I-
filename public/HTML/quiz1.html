@@ -19,7 +19,7 @@
 
 
 <body onload="onloadEsconder()">
-    <a href="menu.html">
+    <a href="../BobIA/indexIA.html">
         <div class="bt-voltar">
             <img src="../IMG/seta back.png" alt="">
             <u>Desistir</u>
@@ -33,15 +33,15 @@
                 <img src="../IMG/logo.png" alt="Logo">
             </a>
         </div>
-
+<a href="dashboard.html">fdsafdsafdsafsd</a>
         <button id="btnIniciarQuiz" onclick="iniciarQuiz()">INICIAR QUIZ</button>
 
         <div id="pontuacao" class="flex-colunar width-fit-content border-primary pontucao">
 
-            <!-- <div id="pontuacaoDuranteJogo" class="flex-colunar padding-8">
+            <div id="pontuacaoDuranteJogo" class="flex-colunar padding-8">
                 <span class="width-fit-content"> Quantidade de acertos: <span id="spanCertas"></span></span>
                 <span class="width-fit-content"> Quantidade de erros: <span id="spanErradas"></span></span>
-            </div> -->
+            </div>
 
             <div id="pontuacaoFinalJogo" class="flex-colunar padding-8">
                 <span id="pontuacaoFinal" class="width-fit-content">Pontuação Final:
@@ -294,8 +294,8 @@
 
         options.forEach((option) => {
             if (option.value === respostaQuestaoAtual) {
-                console.log("alternativaCorreta está no componente: " + alternativaCorreta)
                 alternativaCorreta = option.labels[0].id
+                console.log("alternativaCorreta está no componente: " + alternativaCorreta)
             }
         })
 
@@ -314,7 +314,7 @@
                 document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
                 tentativaIncorreta++
                 erradas++
-                document.getElementById("spanErradas").innerHTML = erradas
+                document.getElementById("spanErradas").innerHTML = erradas;
                 numeroDaQuestaoAtual++
             }
         })
@@ -367,5 +367,41 @@
         // btnConcluir.disabled = true
         btnTentarNovamente.disabled = false
 
+
+        sessionStorage.setItem("ACERTOS_USUARIO", pontuacaoFinal);
+        sessionStorage.setItem("ERROS_USUARIO", erradas);
+        sessionStorage.setItem("FK_QUIS", 1);
+
+        inserir();
+
+    }
+
+    function inserir() {
+        var fkUsuarioVar = sessionStorage.ID_USUARIO
+        var fkQuisVar = sessionStorage.FK_QUIS
+        var corretaVar = sessionStorage.ACERTOS_USUARIO
+        var erradaVar = sessionStorage.ERROS_USUARIO
+
+        console.log(fkUsuarioVar, fkQuisVar, corretaVar, erradaVar);
+
+        fetch("/usuarios/inserir", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                fkUsuarioServer: fkUsuarioVar,
+                fkQuisServer: fkQuisVar,
+                corretaServer: corretaVar,
+                erradaServer: erradaVar,
+            }),
+        })
+            .then(function (resposta) {
+                console.log("resposta: ", resposta);
+            })
+            .catch(function (error) {
+                console.log("Erros ao enviar os dados: ", error);
+                alert("Erros ao enviar os dados.");
+            });
     }
 </script>

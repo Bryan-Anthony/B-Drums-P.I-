@@ -7,7 +7,7 @@
   <title> B'Drums - Cadastro </title>
   <link rel="stylesheet" href="./CSS/acesso.css">
 
-      <link rel="icon" href="./IMG/logo.png" type="image/png">
+  <link rel="icon" href="./IMG/logo.png" type="image/png">
 
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,6 +15,10 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Special+Gothic+Expanded+One&family=Titan+One&display=swap"
     rel="stylesheet">
+
+  <link rel="stylesheet" href="">
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </head>
 
@@ -53,7 +57,7 @@
       <label for="inp_email"> Email: </label>
       <input type="text" id="inp_email" placeholder="bryananthony@gmail.com">
     </div>
-    
+
     <div class="inputs">
       <label for="inp_senha"> Senha: </label>
       <input type="password" id="inp_senha" placeholder="******">
@@ -75,10 +79,6 @@
     </div>
 
     <button onclick="cadastrar()"> ENTRAR </button>
-
-    <div class="card_erro" id="cardErro">
-      <span id="mensagem_erro"></span>
-    </div>
 
   </div>
 
@@ -109,8 +109,13 @@
       confirmacaoSenhaVar == "" ||
       perguntaVar == "null"
     ) {
-      cardErro.style.display = "block";
-      mensagem_erro.innerHTML = "(Mensagem de erro para campos em branco)";
+      Swal.fire({
+        icon: "error",
+        title: "Tudo Certo! Vamos fazer o login...",
+        draggable: true
+      });
+
+
       //   alert('Campos em branco!');
 
       //   // cardErro.style.display = "block";
@@ -130,6 +135,13 @@
       //   console.log("Código de ativação válido.");
       // finalizarAguardar();
 
+    } else {
+      Swal.fire({
+        icon: "success",
+        title: "Tudo Certo! Vamos fazer o login...",
+        draggable: true,
+        confirmButtonText: '<a href="login.html">ok</a>'
+      });
     }
 
     // Enviando o valor da nova input
@@ -154,10 +166,6 @@
         console.log("resposta: ", resposta);
 
         if (resposta.ok) {
-          cardErro.style.display = "block";
-
-          mensagem_erro.innerHTML =
-            "Cadastro realizado com sucesso! Entrando na tela de Login...";
 
           setTimeout(() => {
             window.location = "login.html";

@@ -21,7 +21,6 @@ body {
 
     /* backdrop-filter: blur(px); efeito de desfoque */
     margin: 0;
-    background-image: url('../public/IMG/fundo\ cx.jpg');
 }
 
 
@@ -76,12 +75,16 @@ body {
 
 /* STYLE HOME */
 
-/* img de fundo */
-
 .container {
     height: 100vh;
     width: 100vw;
 }
+
+/* img de fundo */
+.fundo-home {
+    z-index: 1;
+}
+
 
 .fundo-home img {
     margin-top: 0%;
@@ -89,9 +92,8 @@ body {
     height: 100%;
     background-size: 100% 100%;
     object-fit: cover;
-    width: 100%;
-    height: 98vh;
-    z-index: 1;
+    width: 100vw;
+    height: 99vh;
 }
 
 
@@ -118,10 +120,11 @@ body {
     justify-content: space-around;
     flex-direction: row;
     color: #ffffff;
-    background: #f2ff004f;
+    background: #000000c2;
     height: 7vh;
     border-radius: 10px;
-    z-index: 2;
+    position: fixed;
+    bottom: 10px;
 }
 
 .sobre-img {
@@ -152,7 +155,6 @@ body {
     display: flex;
     height: 43px;
     width: 85px;
-
 }
 
 

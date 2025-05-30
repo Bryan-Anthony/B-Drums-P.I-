@@ -79,6 +79,7 @@ h3 {
     border: solid 2px;
     border-radius: 15px;
     border-color: white;
+    color: white;
 }
 
 .graficos {
@@ -91,6 +92,7 @@ h3 {
     height: 50vh;
     width: 60vw;
     border-radius: 15px;
+    color: white;
 }
 
 .grafico {

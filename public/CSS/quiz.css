@@ -51,7 +51,7 @@ button {
 
 .border-secondary {
     border: 3px solid var(--secondary-brand-color);
-    width: 80vw;
+    width: 50vw;
 }
 
 .padding-8 {
@@ -120,8 +120,8 @@ button {
 
 
 .logo img {
-    width: 170px;
-    height: 170px;
+    width: 100px;
+    height: 100px;
     border-radius: 2px;
     display: block;
 }
@@ -129,6 +129,7 @@ button {
 .jogo,
 .pontucao {
     border-radius: 7px;
+
 }
 
 #btnSubmeter,

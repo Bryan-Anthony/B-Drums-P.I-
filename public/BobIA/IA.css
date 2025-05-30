@@ -83,8 +83,7 @@ h3 {
 
 h1 {
     color: #1F2A44;
-    margin-top: 0;
-    margin-bottom: 10px;
+    margin: 0;
 }
 
 textarea[type="text"] {
@@ -94,24 +93,18 @@ textarea[type="text"] {
     width: 400px;
 }
 
-/* button {
-    padding: 8px;
-    font-size: 16px;
-    border-radius: 5px;
-    } */
-
 button {
     background-color: #ffffff;
     padding: 8px;
-    width: 200px;
+    width: 350px;
     border-radius: 7px;
     text-align-last: center;
-    font-size: 16px;
+    font-size: 20px;
     cursor: pointer;
-
-    font-family: "Special Gothic Expanded One", sans-serif;
+    font-weight: bold;
+    /* font-family: "Special Gothic Expanded One", sans-serif;
     font-weight: 400;
-    font-style: normal;
+    font-style: normal; */
 
     /* font-family: "Special Gothic Expanded One", sans-serif;
     font-weight: 400;
@@ -128,6 +121,9 @@ button:hover {
     align-items: center;
     justify-content: center;
 }
+
+/* STYLE ALERT */
+
 
 #resposta {
     font-family: Arial, Helvetica, sans-serif;

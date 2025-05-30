@@ -16,6 +16,8 @@
         href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Special+Gothic+Expanded+One&family=Titan+One&display=swap"
         rel="stylesheet">
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
 
 <body>
@@ -30,6 +32,7 @@
 
         <div class="nav-links">
             <a href="index.html"> INÍCIO </a>
+            <a href="login.html"> LOGIN </a>
             <a href="cadastro.html"> CADASTRO </a>
             <a href="login.html" style="color: burlywood;"> LOGIN </a>
             <a href="../public/HTML/criador.html"> CRIADOR </a>
@@ -52,10 +55,6 @@
 
             <button onclick="entrar()"> ENTRAR </button>
 
-            <div class="card_erro" id="cardErro">
-                <span id="mensagem_erro"></span>
-            </div>
-
     </div>
 
 
@@ -73,17 +72,22 @@
         var senhaVar = inp_senha.value;
 
         if (emailVar == "" || senhaVar == "") {
-            cardErro.style.display = "block"
-            mensagem_erro.innerHTML = "(Mensagem de erro para campos em branco)";
-            // finalizarAguardar();
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Preencha todos os campos!",
+            })
+
             return false;
         }
         else {
-            setInterval(sumirMensagem, 5000)
+            Swal.fire({
+                icon: "success",
+                title: "Tudo Certo! Seja Bem Vindo!!!",
+                draggable: true,
+                confirmButtonText: '<a href="./BobIA/indexIA.html"> ok </a>'
+            });
         }
-
-        // console.log("FORM LOGIN: ", emailVar);
-        // console.log("FORM SENHA: ", senhaVar);
 
         fetch("/usuarios/autenticar", {
             method: "POST",
@@ -103,9 +107,9 @@
                 resposta.json().then(json => {
                     console.log(json);
                     console.log(JSON.stringify(json));
-                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.ID_USUARIO = json.idUsuario;
                     sessionStorage.NOME_USUARIO = json.nome;
-                    // sessionStorage.ID_USUARIO = json.id;
+                    sessionStorage.EMAIL_USUARIO = json.email;
                     // sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
 
                     setTimeout(function () {
@@ -115,12 +119,14 @@
                 });
 
             } else {
-
                 console.log("Houve um erro ao tentar realizar o login!");
 
                 resposta.text().then(texto => {
                     // console.error(texto);
-                    // finalizarAguardar(texto);
+                    alert(texto);
+                    inp_email.value = '';
+                    inp_senha.value = '';
+
                 });
             }
 

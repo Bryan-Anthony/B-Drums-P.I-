@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste</title>
+</head>
+
+<body>
+    <button onclick="curio()">bora</button>
+    <div id="txt"></div>
+</body>
+
+</html>
+
+<script>
+
+    function curio() {
+
+        var curiosidades = [
+            "Por que os bateristas usam baquetas diferentes para estilos musicais distintos?",
+            "Qual é a função do surdo em uma bateria?",
+            "Por que o prato de condução se chama 'ride'?",
+            "Qual a diferença entre uma bateria acústica e uma eletrônica?",
+            "O que é afinação de tambores e como ela afeta o som?",
+            "Por que os bateristas usam abafadores nos tambores?",
+            "De onde vem o nome 'hi-hat'?",
+            "É possível tocar bateria sem usar os pés? Como isso muda o estilo?",
+            "Como a posição dos tambores influencia a técnica de um baterista?",
+            "Por que alguns bateristas preferem toques cruzados no hi-hat, enquanto outros não?",
+            "Qual a diferença entre uma bateria acústica e uma eletrônica?",
+            "Por que o bumbo é tocado com o pé e não com as mãos?",
+            "O que é o groove e qual a sua importância na bateria?",
+            "Quem foi considerado o primeiro grande baterista da história da música moderna?",
+            "Pra que serve o surdo na bateria?",
+            "É possível tocar bateria sem conhecer teoria musical?",
+            "Como o tipo de baqueta influencia no som da bateria?",
+            "O que é pedal duplo e como ele muda a sonoridade do bumbo?",
+            "Por que alguns bateristas tocam com fones de ouvido?",
+            "Quais são os rudimentos mais importantes para iniciantes na bateria?"
+        ];
+
+        var sorteio = (Math.random() * 10 + 0.5).toFixed();
+        var resposta = curiosidades[sorteio]
+        alert('CURIOSIDADE: <br>' + resposta);
+
+    }
+
+</script>

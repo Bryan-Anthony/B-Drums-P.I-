@@ -24,14 +24,13 @@ function autenticar(req, res) {
                         // .then((resultadoAquarios) => {
 
                         // if (resultadoAquarios.length > 0) {
-                            res.json({
-                                // id: resultadoAutenticar[0].id,
-                                email: resultadoAutenticar[0].email,
-                                // nome: resultadoAutenticar[0].nome,
-                                senha: resultadoAutenticar[0].senha,
-                                
-                                // aquarios: resultadoAquarios
-                            });
+                        res.json({
+                            idUsuario: resultadoAutenticar[0].idUsuario,
+                            nome: resultadoAutenticar[0].nome,
+                            email: resultadoAutenticar[0].email,
+                            // senha: resultadoAutenticar[0].senha,
+                            // aquarios: resultadoAquarios
+                        });
                         // } else {
                         //     res.status(204).json({ aquarios: [] });
                         // }
@@ -92,7 +91,43 @@ function cadastrar(req, res) {
     }
 }
 
+function inserir(req, res) {
+
+    var fkUsuario = req.body.fkUsuarioServer;
+    var fkQuis = req.body.fkQuisServer;
+    var correta = req.body.corretaServer;
+    var errada = req.body.erradaServer;
+
+    if (fkUsuario == undefined) {
+        console.log(fkUsuario, "A variavel FKUSURIO deu errado!");
+    } else if (fkQuis == undefined) {
+        console.log(fkQuis, " A variavel  FKQUIS deu errado!");
+    } else if (correta == undefined) {
+        console.log(correta, " A variavel CORRETA deu errado!");
+    } else if (errada == undefined) {
+        console.log(errada, " A variavel ERRADA deu errado!");
+    } else {
+        usuarioModel.inserir(fkUsuario, fkQuis, correta, errada)
+
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar o controle! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            )
+        console.log(fkUsuario, fkQuis, correta, errada)
+    }
+}
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    inserir
 }

@@ -6,8 +6,8 @@
 comandos para mysql server
 */
 
-CREATE DATABASE bdrum;
-USE bdrum;
+CREATE DATABASE bdrums;
+USE bdrums;
 
 CREATE TABLE IF NOT EXISTS usuario(
 idUsuario INT PRIMARY KEY AUTO_INCREMENT,
@@ -67,12 +67,13 @@ ELSE 0
 END)* 100), 2) AS 'Média de não'
 FROM usuario;
 
-
+-- SELECT PARA SABER A MÉDIA DE PESSOAS QUE ACESSAM O SITE E SÃO BATERISTAS
 SELECT
 ROUND((avg(case when pergunta = 'sim' then 1 else 0 end)*100), 2)as media_sim, 
 ROUND((avg(case when pergunta = 'nao' then 1 else 0 end)* 100), 2)as media_nao
 from usuario;
 
+-- SELECT DE FEEDBACK DE EFETUAÇÃO DO QUIS
 SELECT
 u.idUsuario,
 u.nome,
@@ -83,4 +84,4 @@ q.nome AS 'Nome Quiz'
 FROM usuario u JOIN respostaUsuario r
 ON u.idUsuario = r.fkUsuario
 JOIN quis q
-ON q.idQuiz = fkQuis;
+ON q.idQuis = fkQuis;
