@@ -24,13 +24,14 @@
 
     <div class="container">
 
-        <a href="menu.html">
-            <div class="bt-voltar">
+        <div class="bt-voltar">
+            <a href="../BobIA/indexIA.html">
                 <img src="../IMG/seta back.png" alt="">
                 <u> Voltar </u>
-            </div>
-        </a>
+            </a>
+        </div>
 
+        <img src="../IMG/logo.png" alt="">
         <h1> DASHBOARD</h1>
         <h3>Dados do Quiz e de Usuarios que acessaram o site </h3>
 
@@ -46,7 +47,7 @@
                 </div>
 
                 <div class="kpi">
-                    <span id=""></span>
+                    <span id="taxa_de_participacao"></span>
                 </div>
             </div>
 
@@ -156,6 +157,8 @@
                     media_sim.innerHTML += resposta[0].media_sim + '%';
                     media_nao.innerHTML = 'Porcentagem de usuarios que NÃO são Bateristas <br><br>';
                     media_nao.innerHTML += resposta[0].media_nao + '%';
+                    taxa_de_participacao.innerHTML = 'Taxa de usuários que fazem ao menos um quis';
+                    taxa_de_participacao.innerHTML += resposta[0].taxa_de_participacao + '%';
 
                 });
             } else {

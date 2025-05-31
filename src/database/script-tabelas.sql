@@ -42,6 +42,7 @@ CONSTRAINT pkComposta
 	PRIMARY KEY (id, fkUsuario, fkQuiz)
 );
 
+-- INSERINDO USUARIOS PARA EXPERIMENTO
 INSERT INTO usuario (nome, sobrenome, email, senha, pergunta) VALUES
 ('Ana', 'Silva', 'ana.silva@email.com', '1234abcd', 'sim'),
 ('Bruno', 'Costa', 'bruno.costa@email.com', 'abcd1234', 'não'),
@@ -54,24 +55,17 @@ INSERT INTO usuario (nome, sobrenome, email, senha, pergunta) VALUES
 ('Isabela', 'Moura', 'isa.moura@email.com', 'moura999', 'sim'),
 ('João', 'Pereira', 'joao.pereira@email.com', 'joao2025', 'não');
 
-select * from usuario;
-
+-- SELECT PARA SABER A MÉDIA DE PESSOAS QUE ACESSAM O SITE E SÃO E NÃO SÃO BATERISTAS e
+-- PARA SABER DE TODOS OS USUARIOS QUANTOS FIZERAM PELO MENOS 1 QUIS.
 SELECT 
-ROUND((AVG (CASE
-WHEN pergunta = 'sim' THEN 1
-ELSE 0
-END) * 100), 2)  AS 'Média de sim',
-ROUND((AVG (CASE
-WHEN pergunta = 'não' THEN 1
-ELSE 0
-END)* 100), 2) AS 'Média de não'
+  ROUND((AVG(CASE WHEN pergunta = 'sim' THEN 1 ELSE 0 END) * 100), 2) AS media_sim,
+  ROUND((AVG(CASE WHEN pergunta = 'não' THEN 1 ELSE 0 END) * 100), 2) AS media_nao,
+  ROUND((
+    (SELECT COUNT(DISTINCT fkUsuario) FROM respostaUsuario) /
+    (SELECT COUNT(*) FROM usuario)
+  ) * 100, 2) AS taxa_participacao_quiz
 FROM usuario;
 
--- SELECT PARA SABER A MÉDIA DE PESSOAS QUE ACESSAM O SITE E SÃO BATERISTAS
-SELECT
-ROUND((avg(case when pergunta = 'sim' then 1 else 0 end)*100), 2)as media_sim, 
-ROUND((avg(case when pergunta = 'nao' then 1 else 0 end)* 100), 2)as media_nao
-from usuario;
 
 -- SELECT DE FEEDBACK DE EFETUAÇÃO DO QUIS
 SELECT

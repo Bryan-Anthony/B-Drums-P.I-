@@ -11,10 +11,16 @@ body {
 
 h1 {
     color: white;
+    margin: 0;
 }
 
 h3 {
     color: white;
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-family: "Titan One", sans-serif;
+    font-weight: 300;
+    font-style: normal;
 }
 
 /* STYLE TELA*/
@@ -27,13 +33,20 @@ h3 {
     align-items: center;
 }
 
+img {
+    height: 60px;
+    width: 60px;
+
+}
+
 .bt-voltar {
-    position: absolute;
-    top: 40px;
     display: flex;
+    top: 40px;
     justify-content: center;
     align-items: center;
-    z-index: 2;
+    position: absolute;
+    margin-right: 80%;
+    z-index: 100;
 }
 
 .bt-voltar u {
@@ -41,13 +54,18 @@ h3 {
     font-weight: 300;
     font-style: normal;
     color: white;
-    margin-left: 120px;
+    /* margin-left: 120px; */
     cursor: pointer;
-    position: absolute;
+}
+
+.bt-voltar a {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
 }
 
 .bt-voltar img {
-    position: absolute;
     height: 40px;
     width: 40px;
     cursor: pointer;
@@ -63,14 +81,17 @@ h3 {
     flex-direction: column;
     border: solid 2px;
     border-color: white;
-    height: 75vh;
-    width: 90vw;
-    gap: 20px;
+    height: 72vh;
+    width: 80vw;
+    gap: 15px;
+    padding: 5px;
     /* padding: 30px; */
 }
 
 .kpis {
     display: flex;
+    gap: 20px;
+
 }
 
 .kpi {
@@ -93,6 +114,7 @@ h3 {
     width: 60vw;
     border-radius: 15px;
     color: white;
+    margin: 0;
 }
 
 .grafico {

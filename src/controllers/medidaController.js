@@ -1,5 +1,6 @@
 var medidaModel = require("../models/medidaModel");
 
+// KPIS
 function buscarUltimasMedidas(req, res) {
 
     var idUsuario = req.params.idUsuario;
@@ -32,7 +33,7 @@ function ultimaKpi() {
         res.status(500).json(erro.sqlMessage);
     });
 }
-
+// GRÁFICOS
 function buscarMedidasEmTempoReal(req, res) {
 
     var idUsuario = req.params.idUsuario;
