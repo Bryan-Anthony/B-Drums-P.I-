@@ -11,7 +11,7 @@ body {
     justify-content: center;
     align-items: center;
     background-color: #000000;
-    background-image: url('../IMG/o-baterista-toca-bateria-no-estudio-contra-um-belo-fundo-de-perto.jpg');
+    background-image: url('./IMG/o-baterista-toca-bateria-no-estudio-contra-um-belo-fundo-de-perto.jpg');
     background-size: cover;
     background-position: center;
     margin: 0;

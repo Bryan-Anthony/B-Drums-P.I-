@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title> B'Drums - Cadastro </title>
-  <link rel="stylesheet" href="./CSS/acesso.css">
+  <link rel="stylesheet" href="acesso.css">
 
   <link rel="icon" href="./IMG/logo.png" type="image/png">
 
@@ -26,7 +26,7 @@
 
   <div class="navbar">
     <div class="logo">
-      <a href="home.html">
+      <a href="index.html">
         <img src="./IMG/logo.png" alt="Logo">
       </a>
     </div>
@@ -107,12 +107,13 @@
       emailVar == "" ||
       senhaVar == "" ||
       confirmacaoSenhaVar == "" ||
-      perguntaVar == "null"
+      idSelect.value == "null"
     ) {
       Swal.fire({
         icon: "error",
-        title: "Tudo Certo! Vamos fazer o login...",
-        draggable: true
+        title: "Preencha todos os campos!",
+        timer: 3000,
+        timerProgressBar: true
       });
 
 
@@ -135,14 +136,15 @@
       //   console.log("Código de ativação válido.");
       // finalizarAguardar();
 
-    } else {
-      Swal.fire({
-        icon: "success",
-        title: "Tudo Certo! Vamos fazer o login...",
-        draggable: true,
-        confirmButtonText: '<a href="login.html">ok</a>'
-      });
     }
+    //  else {
+    //   Swal.fire({
+    //     icon: "success",
+    //     title: "Tudo Certo! Vamos fazer o login...",
+    //     draggable: true,
+    //     confirmButtonText: '<a href="login.html">ok</a>'
+    //   });
+    // }
 
     // Enviando o valor da nova input
     fetch("/usuarios/cadastrar", {
@@ -167,12 +169,24 @@
 
         if (resposta.ok) {
 
-          setTimeout(() => {
-            window.location = "login.html";
-          }, "2000");
+          // setTimeout(() => {
+          //   window.location = "login.html";
+          // }, "2000");
+
+          Swal.fire({
+            icon: "success",
+            title: "Tudo Certo! Vamos fazer o login...",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true
+          }).then(() => {
+            window.location.href = "login.html";
+          });
 
           limparFormulario();
           finalizarAguardar();
+
+
         } else {
           throw "Houve um erro ao tentar realizar o cadastro!";
         }

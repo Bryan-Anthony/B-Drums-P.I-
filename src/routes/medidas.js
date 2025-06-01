@@ -11,8 +11,5 @@ router.get("/tempo-real/:idUsuario", function (req, res) {
     medidaController.buscarMedidasEmTempoReal(req, res);
 })
 
-router.get("/ultimaKpi/:idUsuario", function (req, res) {
-    medidaController.ultimaKpi(req, res);
-})
 
 module.exports = router; 

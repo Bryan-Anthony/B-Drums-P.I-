@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> B'Drums - Login </title>
-    <link rel="stylesheet" href="./CSS/acesso.css">
+    <link rel="stylesheet" href="acesso.css">
 
     <link rel="icon" href="./IMG/logo.png" type="image/png">
 
@@ -24,15 +24,15 @@
 
 
     <div class="navbar">
+
         <div class="logo">
-            <a href="home.html">
+            <a href="index.html">
                 <img src="./IMG/logo.png" alt="Logo">
             </a>
         </div>
 
         <div class="nav-links">
             <a href="index.html"> INÍCIO </a>
-            <a href="login.html"> LOGIN </a>
             <a href="cadastro.html"> CADASTRO </a>
             <a href="login.html" style="color: burlywood;"> LOGIN </a>
             <a href="../public/HTML/criador.html"> CRIADOR </a>
@@ -51,9 +51,9 @@
             <input type="password" id="inp_senha" placeholder="******">
         </div>
 
-        <a href="cadastro.html"> Ainda não tem conta? <a href=""></a>
+        <a href="cadastro.html"> Ainda não tem conta? </a>
 
-            <button onclick="entrar()"> ENTRAR </button>
+        <button onclick="entrar()"> ENTRAR </button>
 
     </div>
 
@@ -76,19 +76,23 @@
                 icon: "error",
                 title: "Oops...",
                 text: "Preencha todos os campos!",
+                timer: 3000,
+                timerProgressBar: true
             })
 
             return false;
         }
-        else {
-            Swal.fire({
-                icon: "success",
-                title: "Tudo Certo! Seja Bem Vindo!!!",
-                draggable: true,
-                confirmButtonText: '<a href="./BobIA/indexIA.html"> ok </a>'
-            });
-        }
-
+        // else {
+        //     Swal.fire({
+        //         icon: "success",
+        //         title: "Tudo Certo! Seja Bem Vindo!!!",
+        //         showConfirmButton: false,
+        //         timer: 3000,
+        //         timerProgressBar: true
+        //     }).then(() => {
+        //         window.location.href = "./BobIA/indexIA.html";
+        //     });
+        // }
         fetch("/usuarios/autenticar", {
             method: "POST",
             headers: {
@@ -110,12 +114,16 @@
                     sessionStorage.ID_USUARIO = json.idUsuario;
                     sessionStorage.NOME_USUARIO = json.nome;
                     sessionStorage.EMAIL_USUARIO = json.email;
-                    // sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
 
-                    setTimeout(function () {
-                        window.location = "./BobIA/indexIA.html";
-                    }, 1000); // apenas para exibir o loading
-
+                    Swal.fire({
+                        icon: "success",
+                        title: "Tudo Certo! Seja Bem Vindo!!!",
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true
+                    }).then(() => {
+                        window.location.href = "./BobIA/indexIA.html";
+                    });
                 });
 
             } else {

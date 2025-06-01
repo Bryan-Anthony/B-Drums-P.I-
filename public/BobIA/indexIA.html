@@ -7,6 +7,9 @@
     <title> B'Drums & BobIA</title>
     <link rel="stylesheet" href="IA.css">
 
+    <link rel="icon" href="../IMG/logo.png" type="image/png">
+
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -30,7 +33,9 @@
             <a href="../index.html">INÍCIO</a>
             <a href="../HTML/quiz1.html"> QUIS 1 </a>
             <a href="../HTML/quiz2.html"> QUIS 2 </a>
-            <a href="../HTML/bateria virtual.html"> BATERIA VIRTUAL </a>
+            <a href="../HTML/dashboard.html"> DASHBOARD </a>
+            <a href="../HTML/informacao.html"> O QUE É A BATERIA? </a>
+            <a href="../HTML/informacao.html"> BATERIA VIRTUAL </a>
         </div>
     </div>
 
@@ -40,8 +45,6 @@
         <img src="./IMG/bob_logo.png" alt="">
 
         <h1> BobIA </h1>
-
-        <!-- <textarea id="pergunta" type="text" placeholder="Digite uma pergunta sobre bateria..."></textarea> -->
 
         <br><br>
 
@@ -58,7 +61,7 @@
 
     <script>
 
-        var exibir = 'Um instante, consultando IA...'
+        // var exibir = 'Um instante, consultando IA...'
 
         async function gerarResposta() {
 
@@ -99,12 +102,13 @@
 
             // const pergunta = document.getElementById('pergunta').value;
             Swal.fire({
+                icon: "info",
                 title: "Estamos consultando a IA...",
                 text: ` Curiosidade: ${repost}`,
-                imageUrl: "logo.png",
-                imageWidth: 400,
-                imageHeight: 200,
-                imageAlt: "...."
+                imageUrl: "./IMG/bob_logo.png",
+                imageWidth: 80,
+                imageHeight: 80,
+                confirmButtonText: "Ver Resposta🚀"
             });
 
             const response = await fetch('/perguntar', {

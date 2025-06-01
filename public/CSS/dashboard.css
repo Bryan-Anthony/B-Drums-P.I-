@@ -46,7 +46,6 @@ img {
     align-items: center;
     position: absolute;
     margin-right: 80%;
-    z-index: 100;
 }
 
 .bt-voltar u {
@@ -91,16 +90,18 @@ img {
 .kpis {
     display: flex;
     gap: 20px;
-
+    text-align: center;
 }
 
 .kpi {
-    height: 15vh;
+    height: 10vh;
     width: 15vw;
     border: solid 2px;
     border-radius: 15px;
     border-color: white;
     color: white;
+    padding: 7px;
+
 }
 
 .graficos {

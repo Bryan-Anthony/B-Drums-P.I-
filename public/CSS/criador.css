@@ -113,3 +113,9 @@ video {
  width: 100%;
     text-align: center;
 }
+
+p {
+     font-family: "Titan One", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}

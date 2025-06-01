@@ -7,10 +7,12 @@ var usuarioController = require("../controllers/usuarioController");
 router.post("/cadastrar", function (req, res) {
     usuarioController.cadastrar(req, res);
 })
+
 // LOGIN
 router.post("/autenticar", function (req, res) {
     usuarioController.autenticar(req, res);
 });
+
 // DASHBOARD
 router.post("/inserir", function (req, res) {
     usuarioController.inserir(req, res);
