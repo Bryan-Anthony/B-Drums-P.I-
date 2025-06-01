@@ -7,4 +7,44 @@ body {
     font-style: normal;
 
     background-color: black;
+    display: flex;
+    justify-content: center;
+}
+
+.logo {
+    top: 0px;
+    position: fixed;
+}
+
+.logo img {
+    /* position: fixed; */
+    width: 90px;
+    height: 90px;
+    border-radius: 2px;
+    display: block;
+}
+
+.container {
+    text-align: center;
+    background-color: white;
+    border-radius: 10px;
+    border: solid 3px rgb(3, 3, 73);
+    width: 70vw;
+}
+
+.informacao {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+h2{
+    margin-left: 0;
+}
+.informacao img {
+    gap: 200px;
+    margin-right: 0;
+    width: 120px;
+    height: 70px;
 }
