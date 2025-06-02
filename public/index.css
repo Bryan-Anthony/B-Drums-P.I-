@@ -11,6 +11,7 @@ body {
     font-style: normal;
 
     background-color: #000000;
+    overflow-x: hidden;
     /* background-image: url('../IMG/fundo-cad.png');
     background-size: cover;
     background-position: center; */
@@ -140,6 +141,8 @@ body {
     border-radius: 10px;
     position: fixed;
     bottom: 10px;
+    margin-bottom: 1px;
+    gap: 50px;
 }
 
 .sobre-img {
@@ -151,9 +154,11 @@ body {
     color: #ffffff;
 }
 
-.sobre {
-    margin-bottom: 1px;
-    gap: 50px;
+.sobre a{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    
 }
 
 .contato {
@@ -166,16 +171,21 @@ body {
     gap: 50px;
 }
 
+#container-contato {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
 .sobre img {
     display: flex;
     height: 43px;
     width: 85px;
 }
 
-
-
-#container-contato {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
+.fonte {
+    color: white;
+    height: 15vh;
+    width: 30vw;
+    /* position: absolute; */
 }

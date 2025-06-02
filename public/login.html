@@ -40,7 +40,7 @@
 
     </div>
 
-    <div class=" campos">
+    <div class="campos login">
 
         <div class="inputs">
             <label for="inp_sobrenome"> Email: </label>
@@ -82,17 +82,7 @@
 
             return false;
         }
-        // else {
-        //     Swal.fire({
-        //         icon: "success",
-        //         title: "Tudo Certo! Seja Bem Vindo!!!",
-        //         showConfirmButton: false,
-        //         timer: 3000,
-        //         timerProgressBar: true
-        //     }).then(() => {
-        //         window.location.href = "./BobIA/indexIA.html";
-        //     });
-        // }
+   
         fetch("/usuarios/autenticar", {
             method: "POST",
             headers: {

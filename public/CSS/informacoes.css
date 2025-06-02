@@ -22,6 +22,7 @@ body {
     height: 90px;
     border-radius: 2px;
     display: block;
+    margin-left: 10px;
 }
 
 .container {
@@ -29,22 +30,28 @@ body {
     background-color: white;
     border-radius: 10px;
     border: solid 3px rgb(3, 3, 73);
-    width: 70vw;
+    width: 60vw;
+    height: 270vh;
 }
 
-.informacao {
+.informacao-titulo {
     display: flex;
-    align-items: center;
     justify-content: center;
     flex-direction: row;
+    gap: 200px;
 }
 
-h2{
+h2 {
     margin-left: 0;
 }
-.informacao img {
+
+.informacao-titulo img {
     gap: 200px;
     margin-right: 0;
     width: 120px;
-    height: 70px;
+    height: 85px;
+}
+
+.imagem {
+    height: 100px;
 }
