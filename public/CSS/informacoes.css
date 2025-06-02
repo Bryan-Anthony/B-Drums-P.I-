@@ -42,7 +42,7 @@ body {
 }
 
 h2 {
-    margin-left: 0;
+    margin: 0;
 }
 
 .informacao-titulo img {
@@ -52,6 +52,8 @@ h2 {
     height: 85px;
 }
 
-.imagem {
-    height: 100px;
+.setup img {
+    height: 90vh;
+    width: 50vw;
+    margin: 0;
 }
