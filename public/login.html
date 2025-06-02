@@ -50,9 +50,6 @@
             <label for="inp_email"> Senha: </label>
             <input type="password" id="inp_senha" placeholder="******">
         </div>
-
-        <a href="cadastro.html"> Ainda não tem conta? </a>
-
         <button onclick="entrar()"> ENTRAR </button>
 
     </div>
@@ -77,12 +74,13 @@
                 title: "Oops...",
                 text: "Preencha todos os campos!",
                 timer: 3000,
-                timerProgressBar: true
+                timerProgressBar: true,
+                showConfirmButton: false,
             })
 
             return false;
         }
-   
+
         fetch("/usuarios/autenticar", {
             method: "POST",
             headers: {
@@ -120,11 +118,14 @@
                 console.log("Houve um erro ao tentar realizar o login!");
 
                 resposta.text().then(texto => {
-                    // console.error(texto);
-                    alert(texto);
-                    inp_email.value = '';
-                    inp_senha.value = '';
-
+                    Swal.fire({
+                        icon: "error",
+                        title: "Erro.",
+                        text: "Email e/ou senha Inválido(s)!",
+                        timer: 3000,
+                        timerProgressBar: true,
+                        showConfirmButton: false,
+                    })
                 });
             }
 

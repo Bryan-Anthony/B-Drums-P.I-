@@ -35,7 +35,7 @@
       <a href="index.html"> INÍCIO </a>
       <a href="cadastro.html" style="color: burlywood;"> CADASTRO </a>
       <a href="login.html"> LOGIN </a>
-      <a href="../public/HTML/criador.html"> CRIADOR </a>
+      <a href="../HTML/criador.html"> CRIADOR </a>
     </div>
 
   </div>
@@ -60,7 +60,7 @@
 
     <div class="inputs">
       <label for="inp_senha"> Senha: </label>
-      <input type="password" id="inp_senha" placeholder="******">
+      <input type="password" id="inp_senha" placeholder="******" maxlength="6">
     </div>
 
     <div class="inputs">
@@ -78,7 +78,7 @@
       </select>
     </div>
 
-    <button onclick="cadastrar()"> ENTRAR </button>
+    <button onclick="cadastrar()"> CADASTRAR </button>
 
   </div>
 
@@ -89,9 +89,8 @@
 <script>
 
   function cadastrar() {
-    // aguardar();
 
-    //Recupere o valor da nova input pelo nome do id
+    // Recuperando os valores
     // Agora vá para o método fetch logo abaixo
     var nomeVar = inp_nome.value;
     var sobrenomeVar = inp_sobrenome.value;
@@ -100,51 +99,65 @@
     var confirmacaoSenhaVar = inp_confirmarSenha.value;
     var perguntaVar = idSelect.value;
 
-    // Verificando se há algum campo em branco
-    if (
-      nomeVar == "" ||
-      sobrenomeVar == "" ||
-      emailVar == "" ||
-      senhaVar == "" ||
-      confirmacaoSenhaVar == "" ||
-      idSelect.value == "null"
-    ) {
+    // ARRAY
+    var camposCad = [nomeVar, sobrenomeVar, emailVar, senhaVar, confirmacaoSenhaVar, perguntaVar];
+
+    // ESTRUTURA DE REPETIÇÃO
+    var i = 0;
+    while (i < camposCad.length) {
+      if (camposCad[i] == "") {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Preencha todos os campos!",
+          timer: 3000,
+          timerProgressBar: true,
+          showConfirmButton: false
+        });
+        return;
+      }
+      i++;
+    }
+
+    // SE EMAIL TEM '@'
+    if (!emailVar.includes('@')) {
       Swal.fire({
         icon: "error",
-        title: "Preencha todos os campos!",
+        title: "Oops...",
+        text: "Email Inválido!",
         timer: 3000,
-        timerProgressBar: true
+        timerProgressBar: true,
+        showConfirmButton: false
       });
-
-
-      //   alert('Campos em branco!');
-
-      //   // cardErro.style.display = "block";
-      //   // mensagem_erro.innerHTML =
-      //   //   "(Por favor, preencha todos os campos!)";
-
-      //   // finalizarAguardar();
-      //   return false;
-      // } else {
-      //   setInterval(sumirMensagem, 5000);
-      // }
-
-      // // Verificando se o código de ativação é de alguma empresa cadastrada
-      // for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
-      // if (listaEmpresasCadastradas[i].codigo_ativacao == codigoVar) {
-      //   idEmpresaVincular = listaEmpresasCadastradas[i].id
-      //   console.log("Código de ativação válido.");
-      // finalizarAguardar();
-
+      inp_email.value = '';
+      return;
     }
-    //  else {
-    //   Swal.fire({
-    //     icon: "success",
-    //     title: "Tudo Certo! Vamos fazer o login...",
-    //     draggable: true,
-    //     confirmButtonText: '<a href="login.html">ok</a>'
-    //   });
-    // }
+
+    // TAMANHO DA SENHA
+    if (senhaVar.length < 6) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Sua senha deve conter pelos menos 6 caracteres",
+        timer: 8000,
+        timerProgressBar: true,
+        showConfirmButton: false
+      });
+      return;
+    }
+
+    // CONFIRMAÇÃO SE SENHAS ESTÃO IGUAIS 
+    if (senhaVar !== confirmacaoSenhaVar) {
+      Swal.fire({
+        icon: "error",
+        title: "Senhas não conferem!",
+        text: "A senha e a confirmação precisam ser iguais.",
+        timer: 3000,
+        timerProgressBar: true,
+        showConfirmButton: false
+      });
+      return;
+    }
 
     // Enviando o valor da nova input
     fetch("/usuarios/cadastrar", {
@@ -164,14 +177,10 @@
         // idEmpresaVincularServer: idEmpresaVincular
       }),
     })
-      .then(function (resposta) {
+      .then(async function (resposta) {
         console.log("resposta: ", resposta);
 
         if (resposta.ok) {
-
-          // setTimeout(() => {
-          //   window.location = "login.html";
-          // }, "2000");
 
           Swal.fire({
             icon: "success",
@@ -188,8 +197,17 @@
 
 
         } else {
-          throw "Houve um erro ao tentar realizar o cadastro!";
+          var erroDoCadastro = await resposta.json();
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Já existe um cadastro com este email!",
+            timer: 5000,
+            timerProgressBar: true,
+            showConfirmButton: false
+          });
         }
+        inp_email.value == ''
       })
       .catch(function (resposta) {
         console.log(`#ERRO: ${resposta}`);
@@ -198,5 +216,4 @@
 
     return false;
   }
-
 </script>

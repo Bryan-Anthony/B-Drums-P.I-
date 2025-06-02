@@ -14,8 +14,10 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Special+Gothic+Expanded+One&family=Titan+One&display=swap"
         rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 
 </head>
 
@@ -158,7 +160,7 @@
                     media_nao.innerHTML = 'Porcentagem de usuarios que NÃO são Bateristas <br><br>';
                     media_nao.innerHTML += resposta[0].media_nao + '%';
                     taxa_de_participacao.innerHTML = 'Taxa de usuários que fazem ao menos um quis <br><br>';
-                    taxa_de_participacao.innerHTML += resposta[0].taxa_de_participacao + '%';
+                    taxa_de_participacao.innerHTML += resposta[0].taxa_participacao_quiz + '%';
 
                 });
             } else {
@@ -177,37 +179,48 @@
 
         fetch(`/medidas/tempo-real/${idUsuario}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
-                response.json().then(function (resposta) {
+                console.log(response)
+                console.log(response.statusText)
+                if (response.statusText === 'No Content') {
 
-                    if (resposta.length == 0) {
-                        Swal.fire({
-                            icon: "info",
-                            title: "Dashboard indisponivel",
-                            text: 'Para acessar é necessário ter feito pelo menos 1 Quis',
-                            showConfirmButton: false,
-                            timer: 15000,
-                            timerProgressBar: true
-                        }).then(() => {
-                            window.location.href = "../BobIA/indexIA.html";
+                    Swal.fire({
+                        icon: "info",
+                        title: "Dashboard Indisponível",
+                        text: 'Para acessar é necessário ter feito pelo menos 1 Quis',
+                        showConfirmButton: false,
+                        timer: 5000,
+                        timerProgressBar: true
+                    })
+
+                    setTimeout(() => {
+                        window.location.href = "../BobIA/indexIA.html";
+                    }, 15000)
+                } else {
+                    response.json()
+                        .then(function (resposta) {
+                            console.log(resposta)
+                            if (resposta.length >= 1) {
+                                acertos1 = resposta[0].ACERTOS;
+                                erros1 = resposta[0].ERROS;
+                            }
+                            if (resposta.length > 1) {
+
+                                acertos2 = resposta[1].ACERTOS;
+                                erros2 = resposta[1].ERROS;
+                            }
+
+                            plotarGrafico();
+
                         });
-                    }
+                }
 
-                    if (resposta.length == 1) {
-                        acertos1 = resposta[0].ACERTOS;
-                        erros1 = resposta[0].ERROS;
-                    }
-                    acertos2 = resposta[1].ACERTOS;
-                    erros2 = resposta[1].ERROS;
-
-                    plotarGrafico();
-
-                });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
             }
         })
             .catch(function (error) {
                 console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+                alert('braoufhsd')
             });
     }
 

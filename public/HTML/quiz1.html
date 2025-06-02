@@ -15,6 +15,10 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Special+Gothic+Expanded+One&family=Titan+One&display=swap"
         rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
 </head>
 
 
@@ -90,6 +94,7 @@
                 <button onclick="avancar()" id="btnProx" disabled>Avançar para próxima questão</button>
                 <button onclick="finalizar()" id="btnConcluir" disabled>Finalizar Quiz</button>
                 <button onclick="tentarNovamente()" id="btnTentarNovamente" disabled>Tentar novamente</button>
+                <button onclick="entrarDash()" id="btnEntrarDash" disabled>Ver Dashboard</button>
             </div>
 
         </div>
@@ -210,7 +215,7 @@
 
         btnSubmeter.disabled = false
         btnProx.disabled = true
-        // btnConcluir.disabled = true
+        btnEntrarDash.disabled = true
         btnTentarNovamente.disabled = true
     }
 
@@ -240,7 +245,16 @@
         }
 
         if (!hasChecked) {
-            alert("Não há alternativas escolhidas. Escolha uma opção.")
+
+            Swal.fire({
+                icon: "info",
+                title: "Opa!",
+                text: "Selecione alguma alternativa...",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true
+            })
+
         } else {
             btnSubmeter.disabled = true
             btnProx.disabled = false
@@ -270,7 +284,14 @@
         if (numeroDaQuestaoAtual < quantidadeDeQuestoes - 1) {
             preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
         } else if (numeroDaQuestaoAtual == quantidadeDeQuestoes - 1) {
-            alert("Atenção... a próxima é a ultima questão!")
+            Swal.fire({
+                icon: "warning",
+                title: "Atenção!!",
+                text: "a proxima questão é a Última!!!",
+                showConfirmButton: false,
+                timer: 5000,
+                timerProgressBar: true
+            })
             preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
         } else {
             finalizarJogo()
@@ -281,6 +302,19 @@
     function tentarNovamente() {
         // atualiza a página
         window.location.reload()
+    }
+
+    function entrarDash() {
+        Swal.fire({
+            icon: "success",
+            title: "Parabéns!!",
+            text: "Você concluiu nosso Quis, agora bora ver alguns dados...",
+            showConfirmButton: false,
+            timer: 7000,
+            timerProgressBar: true
+        }).then(() => {
+            window.location.href = "dashboard.html";
+        });
     }
 
     function checarResposta() {
@@ -363,7 +397,7 @@
 
         btnProx.disabled = true
         btnSubmeter.disabled = true
-        // btnConcluir.disabled = true
+        btnEntrarDash.disabled = false
         btnTentarNovamente.disabled = false
 
 

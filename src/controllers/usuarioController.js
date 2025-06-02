@@ -36,6 +36,7 @@ function autenticar(req, res) {
                         // }
                     } else if (resultadoAutenticar.length == 0) {
                         res.status(403).send("Email e/ou senha inválido(s)");
+                       
                     }
                     else {
                         res.status(403).send("Mais de um usuário com o mesmo login e senha!");
@@ -81,12 +82,21 @@ function cadastrar(req, res) {
                 }
             ).catch(
                 function (erro) {
+
+
                     console.log(erro);
                     console.log(
                         "\nHouve um erro ao realizar o cadastro! Erro: ",
                         erro.sqlMessage
                     );
-                    res.status(500).json(erro.sqlMessage);
+
+                    if (erro.message == "Email já cadastrado") {
+                        res.status(400).json({ erroEmail: erro.message })
+                    } else {
+                        res.status(500).json(erro.sqlMessage);
+                    }
+
+
                 }
             );
     }

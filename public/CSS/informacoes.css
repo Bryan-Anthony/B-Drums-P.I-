@@ -52,8 +52,11 @@ h2 {
     height: 85px;
 }
 
+
+.setup{
+}
+
 .setup img {
-    height: 90vh;
+    height: 60vh;
     width: 50vw;
-    margin: 0;
 }
