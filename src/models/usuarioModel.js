@@ -37,13 +37,13 @@ async function cadastrar(nome, sobrenome, email, senha, pergunta) {
 
 }
 
-// INSERINDO NO QUIS
-function inserir(fkUsuario, fkQuis, correta, errado) {
-    console.log("ACESSEI O USUARIO MODEL \n\n function inserir():", fkUsuario, fkQuis, correta, errado)
+// INSERINDO NO QUIZ
+function inserir(fkUsuario, fkQuiz, correta, errado) {
+    console.log("ACESSEI O USUARIO MODEL \n\n function inserir():", fkUsuario, fkQuiz, correta, errado)
 
     var instrucaoSql = `
-    INSERT INTO respostaUsuario (fkUsuario, fkQuis, acertos, erros) VALUES
-    ( ${fkUsuario}, ${fkQuis}, ${correta}, ${errado})`;
+    INSERT INTO respostaUsuario (fkUsuario, fkQuiz, acertos, erros) VALUES
+    ( ${fkUsuario}, ${fkQuiz}, ${correta}, ${errado})`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);

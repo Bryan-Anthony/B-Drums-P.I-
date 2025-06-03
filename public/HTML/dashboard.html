@@ -35,7 +35,7 @@
 
         <img src="../IMG/logo.png" alt="">
         <h1> DASHBOARD</h1>
-        <h3>Dados do Quis e de Usuarios que acessaram o site </h3>
+        <h3>Dados do Quiz e de Usuarios que acessaram o site </h3>
 
         <div class="container-indicadores">
 
@@ -85,13 +85,13 @@
 
 
     function plotarGrafico() {
-        const label_quis = ['Acertos', 'Erros'];
+        const label_quiz = ['Acertos', 'Erros'];
 
-        // QUIS 1
+        // QUIZ 1
 
 
-        const data_quis1 = {
-            labels: label_quis,
+        const data_quiz1 = {
+            labels: label_quiz,
             datasets: [{
                 label: '',
                 data: [acertos1, erros1],
@@ -100,9 +100,9 @@
             }]
         };
 
-        const config_quis1 = {
+        const config_quiz1 = {
             type: 'pie',
-            data: data_quis1,
+            data: data_quiz1,
             options: {
                 responsive: true,
                 plugins: {
@@ -111,17 +111,17 @@
                     },
                     title: {
                         display: true,
-                        text: '1° QUIS'
+                        text: '1° QUIZ'
                     }
                 }
             }
         };
 
 
-        // QUIS 2
+        // QUIZ 2
 
-        const data_quis2 = {
-            labels: label_quis,
+        const data_quiz2 = {
+            labels: label_quiz,
             datasets: [{
                 label: '',
                 data: [acertos2, erros2],
@@ -130,9 +130,9 @@
             }]
         };
 
-        const config_quis2 = {
+        const config_quiz2 = {
             type: 'pie',
-            data: data_quis2,
+            data: data_quiz2,
             options: {
                 responsive: true,
                 plugins: {
@@ -141,7 +141,7 @@
                     },
                     title: {
                         display: true,
-                        text: '2° QUIS'
+                        text: '2° QUIZ'
                     }
                 }
             }
@@ -150,8 +150,8 @@
         const ctx1 = document.getElementById('myChart1');
         const ctx2 = document.getElementById('myChart2');
 
-        const grafico_quis1 = new Chart(ctx1, config_quis1);
-        const grafico_quis2 = new Chart(ctx2, config_quis2);
+        const grafico_quiz1 = new Chart(ctx1, config_quiz1);
+        const grafico_quiz2 = new Chart(ctx2, config_quiz2);
     }
 
 
@@ -168,8 +168,8 @@
                     media_nao.innerHTML = 'Porcentagem de usuarios que NÃO são Bateristas <br><br>';
                     media_nao.innerHTML += resposta[0].media_nao + '%';
 
-                    taxa_de_participacao.innerHTML = 'Taxa de usuários que fazem ao menos um quis <br><br>';
-                    taxa_de_participacao.innerHTML += resposta[0].taxa_participacao_quis + '%';
+                    taxa_de_participacao.innerHTML = 'Taxa de usuários que fazem ao menos um quiz <br><br>';
+                    taxa_de_participacao.innerHTML += resposta[0].taxa_participacao_quiz + '%';
 
                 });
             } else {
@@ -195,7 +195,7 @@
                     Swal.fire({
                         icon: "info",
                         title: "Dashboard Indisponível",
-                        text: 'Para acessar é necessário ter feito pelo menos 1 Quis',
+                        text: 'Para acessar é necessário ter feito pelo menos 1 Quiz',
                         showConfirmButton: false,
                         timer: 5000,
                         timerProgressBar: true
@@ -212,8 +212,7 @@
                                 acertos1 = resposta[0].ACERTOS;
                                 erros1 = resposta[0].ERROS;
                             }
-                            if (resposta.length >= 1) {
-
+                            if (resposta.length >= 2) {
                                 acertos2 = resposta[1].ACERTOS;
                                 erros2 = resposta[1].ERROS;
                             }

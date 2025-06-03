@@ -105,20 +105,20 @@ function cadastrar(req, res) {
 function inserir(req, res) {
 
     var fkUsuario = req.body.fkUsuarioServer;
-    var fkQuis = req.body.fkQuisServer;
+    var fkQuiz = req.body.fkQuizServer;
     var correta = req.body.corretaServer;
     var errada = req.body.erradaServer;
 
     if (fkUsuario == undefined) {
         console.log(fkUsuario, "A variavel FKUSURIO deu errado!");
-    } else if (fkQuis == undefined) {
-        console.log(fkQuis, " A variavel  FKQUIS deu errado!");
+    } else if (fkQuiz == undefined) {
+        console.log(fkQuiz, " A variavel  FKQUIZ deu errado!");
     } else if (correta == undefined) {
         console.log(correta, " A variavel CORRETA deu errado!");
     } else if (errada == undefined) {
         console.log(errada, " A variavel ERRADA deu errado!");
     } else {
-        usuarioModel.inserir(fkUsuario, fkQuis, correta, errada)
+        usuarioModel.inserir(fkUsuario, fkQuiz, correta, errada)
 
             .then(
                 function (resultado) {
@@ -134,7 +134,7 @@ function inserir(req, res) {
                     res.status(500).json(erro.sqlMessage);
                 }
             )
-        console.log(fkUsuario, fkQuis, correta, errada)
+        console.log(fkUsuario, fkQuiz, correta, errada)
     }
 }
 module.exports = {

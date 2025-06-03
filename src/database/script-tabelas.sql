@@ -20,8 +20,8 @@ pergunta CHAR(3) NOT NULL
 		CHECK (pergunta IN ( 'sim', 'não'))
 );
 
-CREATE TABLE IF NOT EXISTS quis(
-idQuis INT PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS quiz(
+idQuiz INT PRIMARY KEY AUTO_INCREMENT,
 nome VARCHAR(45) NOT NULL,
 descricao VARCHAR(45) NOT NULL
 );
@@ -29,16 +29,16 @@ descricao VARCHAR(45) NOT NULL
 CREATE TABLE IF NOT EXISTS respostaUsuario(
 id INT AUTO_INCREMENT,
 fkUsuario INT,
-fkQuis INT ,
+fkQuiz INT ,
 acertos INT NOT NULL,
 erros INT NOT NULL,
 dtRealizacao DATETIME DEFAULT CURRENT_TIMESTAMP,
 CONSTRAINT respostaUsuario
 	FOREIGN KEY (fkUsuario) REFERENCES usuario(idUsuario),
-CONSTRAINT respostaQuis
-	FOREIGN KEY (fkQuis) REFERENCES quis(idQuis),
+CONSTRAINT respostaQuiz
+	FOREIGN KEY (fkQuiz) REFERENCES quiz(idQuiz),
 CONSTRAINT pkComposta
-	PRIMARY KEY (id, fkUsuario, fkQuis)
+	PRIMARY KEY (id, fkUsuario, fkQuiz)
 );
 
 -- INSERINDO USUARIOS PARA EXPERIMENTO
@@ -54,27 +54,32 @@ INSERT INTO usuario (nome, sobrenome, email, senha, pergunta) VALUES
 ('Isabela', 'Moura', 'isa.moura@email.com', 'moura999', 'sim'),
 ('João', 'Pereira', 'joao.pereira@email.com', 'joao2025', 'não');
 
+-- INSERINDO OS QUIZ
+INSERT INTO quiz VALUES
+(1, '1°Quis', 'Perguntas do primeiro quis para o usuário.'),
+(2, '2°Quis', 'Perguntas do primeiro quis para o usuário.');
+
 -- SELECT PARA SABER A MÉDIA DE PESSOAS QUE ACESSAM O SITE E SÃO E NÃO SÃO BATERISTAS e
--- PARA SABER DE TODOS OS USUARIOS QUANTOS FIZERAM PELO MENOS 1 QUIS.
+-- PARA SABER DE TODOS OS USUARIOS QUANTOS FIZERAM PELO MENOS 1 QUIZ.
 SELECT 
   ROUND((AVG(CASE WHEN pergunta = 'sim' THEN 1 ELSE 0 END) * 100), 2) AS media_sim,
   ROUND((AVG(CASE WHEN pergunta = 'não' THEN 1 ELSE 0 END) * 100), 2) AS media_nao,
   ROUND((
     (SELECT COUNT(DISTINCT fkUsuario) FROM respostaUsuario) /
     (SELECT COUNT(*) FROM usuario)
-  ) * 100, 2) AS taxa_participacao_quis
+  ) * 100, 2) AS taxa_participacao_quiz
 FROM usuario;
 
 
--- SELECT DE FEEDBACK DE EFETUAÇÃO DO QUIS
+-- SELECT DE FEEDBACK DE EFETUAÇÃO DO QUIZ
 SELECT
 u.idUsuario,
 u.nome,
 r.acertos AS Acertos,
 r.erros AS Erros,
-q.idQuis,
-q.nome AS 'Nome Quis'
+q.idQuiz,
+q.nome AS 'Nome Quiz'
 FROM usuario u JOIN respostaUsuario r
 ON u.idUsuario = r.fkUsuario
-JOIN quis q
-ON q.idQuis = fkQuis;
+JOIN quiz q
+ON q.idQuiz = fkQuiz;
