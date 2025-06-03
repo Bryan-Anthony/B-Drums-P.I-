@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>B.Drums - Quiz 1</title>
-    <link rel="stylesheet" href="../CSS/quiz.css">
+    <link rel="stylesheet" href="../CSS/quis.css">
 
     <link rel="icon" href="../IMG/logo.png" type="image/png">
 
@@ -92,7 +92,7 @@
             <div id="botoes" class="flex-colunar padding-8 botoes">
                 <button onclick="submeter()" id="btnSubmeter">Confirmar resposta</button>
                 <button onclick="avancar()" id="btnProx" disabled>Avançar para próxima questão</button>
-                <button onclick="finalizar()" id="btnConcluir" disabled>Finalizar Quiz</button>
+                <!-- <button onclick="finalizar()" id="btnConcluir" disabled>Finalizar Quiz</button> -->
                 <button onclick="tentarNovamente()" id="btnTentarNovamente" disabled>Tentar novamente</button>
                 <button onclick="entrarDash()" id="btnEntrarDash" disabled>Ver Dashboard</button>
             </div>
@@ -216,7 +216,10 @@
         btnSubmeter.disabled = false
         btnProx.disabled = true
         btnEntrarDash.disabled = true
+        // btnConcluir.disabled = true
         btnTentarNovamente.disabled = true
+        
+
     }
 
     function preencherHTMLcomQuestaoAtual(index) {
@@ -310,7 +313,7 @@
             title: "Parabéns!!",
             text: "Você concluiu nosso Quis, agora bora ver alguns dados...",
             showConfirmButton: false,
-            timer: 7000,
+            timer: 5000,
             timerProgressBar: true
         }).then(() => {
             window.location.href = "dashboard.html";
@@ -395,9 +398,10 @@
 
         document.getElementById('jogo').classList.add("text-new-gray")
 
-        btnProx.disabled = true
+        btnProx.disabled = false
         btnSubmeter.disabled = true
         btnEntrarDash.disabled = false
+        // btnConcluir.disabled = false
         btnTentarNovamente.disabled = false
 
 

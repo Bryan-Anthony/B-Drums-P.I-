@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>B.Drums - Quiz 2</title>
-    <link rel="stylesheet" href="../CSS/quiz.css">
+    <title>B.Drums - Quis 1</title>
+    <link rel="stylesheet" href="../CSS/quis.css">
 
     <link rel="icon" href="../IMG/logo.png" type="image/png">
 
@@ -15,6 +15,10 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Special+Gothic+Expanded+One&family=Titan+One&display=swap"
         rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
 </head>
 
 
@@ -25,7 +29,7 @@
             <u>Desistir</u>
         </div>
     </a>
-    
+
     <div id="pontuacaoEJogo">
 
         <div class="logo">
@@ -33,7 +37,6 @@
                 <img src="../IMG/logo.png" alt="Logo">
             </a>
         </div>
-
         <button id="btnIniciarQuiz" onclick="iniciarQuiz()">INICIAR QUIZ</button>
 
         <div id="pontuacao" class="flex-colunar width-fit-content border-primary pontucao">
@@ -87,12 +90,11 @@
             </div>
 
             <div id="botoes" class="flex-colunar padding-8 botoes">
-
                 <button onclick="submeter()" id="btnSubmeter">Confirmar resposta</button>
                 <button onclick="avancar()" id="btnProx" disabled>Avançar para próxima questão</button>
                 <!-- <button onclick="finalizar()" id="btnConcluir" disabled>Finalizar Quiz</button> -->
                 <button onclick="tentarNovamente()" id="btnTentarNovamente" disabled>Tentar novamente</button>
-
+                <button onclick="entrarDash()" id="btnEntrarDash" disabled>Ver Dashboard</button>
             </div>
 
         </div>
@@ -102,6 +104,7 @@
 
 </html>
 <script>
+
     const listaDeQuestoes = [
 
         {
@@ -212,7 +215,7 @@
 
         btnSubmeter.disabled = false
         btnProx.disabled = true
-        // btnConcluir.disabled = true
+        btnEntrarDash.disabled = true
         btnTentarNovamente.disabled = true
     }
 
@@ -242,7 +245,16 @@
         }
 
         if (!hasChecked) {
-            alert("Não há alternativas escolhidas. Escolha uma opção.")
+
+            Swal.fire({
+                icon: "info",
+                title: "Opa!",
+                text: "Selecione alguma alternativa...",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true
+            })
+
         } else {
             btnSubmeter.disabled = true
             btnProx.disabled = false
@@ -272,7 +284,14 @@
         if (numeroDaQuestaoAtual < quantidadeDeQuestoes - 1) {
             preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
         } else if (numeroDaQuestaoAtual == quantidadeDeQuestoes - 1) {
-            alert("Atenção... a próxima é a ultima questão!")
+            Swal.fire({
+                icon: "warning",
+                title: "Atenção!!",
+                text: "a proxima questão é a Última!!!",
+                showConfirmButton: false,
+                timer: 5000,
+                timerProgressBar: true
+            })
             preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
         } else {
             finalizarJogo()
@@ -285,6 +304,19 @@
         window.location.reload()
     }
 
+    function entrarDash() {
+        Swal.fire({
+            icon: "success",
+            title: "Parabéns!!",
+            text: "Você concluiu nosso Quis, agora bora ver alguns dados...",
+            showConfirmButton: false,
+            timer: 7000,
+            timerProgressBar: true
+        }).then(() => {
+            window.location.href = "dashboard.html";
+        });
+    }
+
     function checarResposta() {
         const questaoAtual = listaDeQuestoes[numeroDaQuestaoAtual] // questão atual 
         const respostaQuestaoAtual = questaoAtual.alternativaCorreta // qual é a resposta correta da questão atual
@@ -295,8 +327,8 @@
 
         options.forEach((option) => {
             if (option.value === respostaQuestaoAtual) {
-                console.log("alternativaCorreta está no componente: " + alternativaCorreta)
                 alternativaCorreta = option.labels[0].id
+                console.log("alternativaCorreta está no componente: " + alternativaCorreta)
             }
         })
 
@@ -315,7 +347,7 @@
                 document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
                 tentativaIncorreta++
                 erradas++
-                document.getElementById("spanErradas").innerHTML = erradas
+                document.getElementById("spanErradas").innerHTML = erradas;
                 numeroDaQuestaoAtual++
             }
         })
@@ -365,8 +397,44 @@
 
         btnProx.disabled = true
         btnSubmeter.disabled = true
-        // btnConcluir.disabled = true
+        btnEntrarDash.disabled = false
         btnTentarNovamente.disabled = false
 
+
+        sessionStorage.setItem("ACERTOS_USUARIO", pontuacaoFinal);
+        sessionStorage.setItem("ERROS_USUARIO", erradas);
+        sessionStorage.setItem("FK_QUIS", 2);
+
+        inserir();
+
+    }
+
+    function inserir() {
+        var fkUsuarioVar = sessionStorage.ID_USUARIO
+        var fkQuisVar = sessionStorage.FK_QUIS
+        var corretaVar = sessionStorage.ACERTOS_USUARIO
+        var erradaVar = sessionStorage.ERROS_USUARIO
+
+        console.log(fkUsuarioVar, fkQuisVar, corretaVar, erradaVar);
+
+        fetch("/usuarios/inserir", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                fkUsuarioServer: fkUsuarioVar,
+                fkQuisServer: fkQuisVar,
+                corretaServer: corretaVar,
+                erradaServer: erradaVar,
+            }),
+        })
+            .then(function (resposta) {
+                console.log("resposta: ", resposta);
+            })
+            .catch(function (error) {
+                console.log("Erros ao enviar os dados: ", error);
+                alert("Erros ao enviar os dados.");
+            });
     }
 </script>

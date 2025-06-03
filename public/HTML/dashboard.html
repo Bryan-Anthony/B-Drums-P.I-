@@ -35,7 +35,7 @@
 
         <img src="../IMG/logo.png" alt="">
         <h1> DASHBOARD</h1>
-        <h3>Dados do Quiz e de Usuarios que acessaram o site </h3>
+        <h3>Dados do Quis e de Usuarios que acessaram o site </h3>
 
         <div class="container-indicadores">
 
@@ -51,17 +51,20 @@
                 <div class="kpi">
                     <span id="taxa_de_participacao"></span>
                 </div>
+
+                <div class="kpi">
+                    <span id="nivel"></span>
+                </div>
+
             </div>
 
             <div class="graficos">
+
                 <div class="grafico">
                     <canvas id="myChart1"></canvas>
-                </div>
-
-
-                <div class="grafico">
                     <canvas id="myChart2"></canvas>
                 </div>
+
             </div>
 
         </div>
@@ -78,13 +81,13 @@
 
 
     function plotarGrafico() {
-        const label_quiz = ['Acertos', 'Erros'];
+        const label_quis = ['Acertos', 'Erros'];
 
         // QUIS 1
 
 
-        const data_quiz1 = {
-            labels: label_quiz,
+        const data_quis1 = {
+            labels: label_quis,
             datasets: [{
                 label: '',
                 data: [acertos1, erros1],
@@ -93,9 +96,9 @@
             }]
         };
 
-        const config_quiz1 = {
+        const config_quis1 = {
             type: 'pie',
-            data: data_quiz1,
+            data: data_quis1,
             options: {
                 responsive: true,
                 plugins: {
@@ -113,8 +116,8 @@
 
         // QUIS 2
 
-        const data_quiz2 = {
-            labels: label_quiz,
+        const data_quis2 = {
+            labels: label_quis,
             datasets: [{
                 label: '',
                 data: [acertos2, erros2],
@@ -123,9 +126,9 @@
             }]
         };
 
-        const config_quiz2 = {
+        const config_quis2 = {
             type: 'pie',
-            data: data_quiz2,
+            data: data_quis2,
             options: {
                 responsive: true,
                 plugins: {
@@ -143,8 +146,8 @@
         const ctx1 = document.getElementById('myChart1');
         const ctx2 = document.getElementById('myChart2');
 
-        const grafico_quiz1 = new Chart(ctx1, config_quiz1);
-        const grafico_quiz2 = new Chart(ctx2, config_quiz2);
+        const grafico_quis1 = new Chart(ctx1, config_quis1);
+        const grafico_quis2 = new Chart(ctx2, config_quis2);
     }
 
 
@@ -157,10 +160,12 @@
 
                     media_sim.innerHTML = 'Porcentagem de usuarios que SÃO Bateristas <br><br>';
                     media_sim.innerHTML += resposta[0].media_sim + '%';
+
                     media_nao.innerHTML = 'Porcentagem de usuarios que NÃO são Bateristas <br><br>';
                     media_nao.innerHTML += resposta[0].media_nao + '%';
+
                     taxa_de_participacao.innerHTML = 'Taxa de usuários que fazem ao menos um quis <br><br>';
-                    taxa_de_participacao.innerHTML += resposta[0].taxa_participacao_quiz + '%';
+                    taxa_de_participacao.innerHTML += resposta[0].taxa_participacao_quis + '%';
 
                 });
             } else {
@@ -191,27 +196,48 @@
                         timer: 5000,
                         timerProgressBar: true
                     })
-
                     setTimeout(() => {
                         window.location.href = "../BobIA/indexIA.html";
-                    }, 15000)
+                    }, 5000)
                 } else {
                     response.json()
                         .then(function (resposta) {
-                            console.log(resposta)
+                            console.log(resposta);
+
                             if (resposta.length >= 1) {
                                 acertos1 = resposta[0].ACERTOS;
                                 erros1 = resposta[0].ERROS;
                             }
-                            if (resposta.length > 1) {
+                            if (resposta.length >= 1) {
 
                                 acertos2 = resposta[1].ACERTOS;
                                 erros2 = resposta[1].ERROS;
                             }
 
+                            // var total = (acertos1 + acertos2) + (erros1 + erros2);
+                            // var acertos = acertos1 + acertos2;
+
+                            // let porcentagemNivel = (acertos / total) * 100;
+
+                            // if (porcentagem >= 9) {
+                            //     porcentagemNivel = 'Mestre da baqueta 🥁🔥';
+                            // }
+                            // else if (porcentagem >= 7) {
+                            //     porcentagemNivel = 'Avançado 🎧'
+                            // } else if (porcentagem >= 5) {
+                            //     porcentagemNivel = 'Intermediário 😎';
+                            // } else if (porcentagem >= 3) {
+                            //     porcentagemNivel = 'Iniciante 🧐';
+                            // } else {
+                            //     porcentagemNivel = 'Precisa estudar... 📚';
+                            // }
+                            // nivel.innerHTML = 'Seu Nível de acordo com seu dempenhos nas tentativas <br><br>';
+                            // nivel.innerHTML += porcentagemNivel;
+
                             plotarGrafico();
 
                         });
+
                 }
 
             } else {

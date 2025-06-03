@@ -8,7 +8,7 @@ function buscarUltimasMedidas() {
     ROUND((
     (SELECT COUNT(DISTINCT fkUsuario) FROM respostaUsuario) /
     (SELECT COUNT(*) FROM usuario)
-    ) * 100, 2) AS taxa_participacao_quiz
+    ) * 100, 2) AS taxa_participacao_quis
     FROM usuario;`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);

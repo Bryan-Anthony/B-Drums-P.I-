@@ -35,7 +35,7 @@
       <a href="index.html"> INÍCIO </a>
       <a href="cadastro.html" style="color: burlywood;"> CADASTRO </a>
       <a href="login.html"> LOGIN </a>
-      <a href="../HTML/criador.html"> CRIADOR </a>
+      <a href="./HTML/criador.html"> CRIADOR </a>
     </div>
 
   </div>
@@ -60,7 +60,7 @@
 
     <div class="inputs">
       <label for="inp_senha"> Senha: </label>
-      <input type="password" id="inp_senha" placeholder="******" maxlength="6">
+      <input type="password" id="inp_senha" placeholder="******" maxlength="8">
     </div>
 
     <div class="inputs">
@@ -134,11 +134,11 @@
     }
 
     // TAMANHO DA SENHA
-    if (senhaVar.length < 6) {
+    if (senhaVar.length < 8) {
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: "Sua senha deve conter pelos menos 6 caracteres",
+        text: "Sua senha deve conter pelos menos 8 caracteres",
         timer: 8000,
         timerProgressBar: true,
         showConfirmButton: false

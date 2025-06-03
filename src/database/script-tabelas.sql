@@ -32,14 +32,13 @@ fkUsuario INT,
 fkQuis INT ,
 acertos INT NOT NULL,
 erros INT NOT NULL,
-nota DECIMAL (4,2) NOT NULL,
 dtRealizacao DATETIME DEFAULT CURRENT_TIMESTAMP,
 CONSTRAINT respostaUsuario
 	FOREIGN KEY (fkUsuario) REFERENCES usuario(idUsuario),
-CONSTRAINT respostaQuiz
-	FOREIGN KEY (fkQuiz) REFERENCES quiz(idQuiz),
+CONSTRAINT respostaQuis
+	FOREIGN KEY (fkQuis) REFERENCES quis(idQuis),
 CONSTRAINT pkComposta
-	PRIMARY KEY (id, fkUsuario, fkQuiz)
+	PRIMARY KEY (id, fkUsuario, fkQuis)
 );
 
 -- INSERINDO USUARIOS PARA EXPERIMENTO
@@ -63,7 +62,7 @@ SELECT
   ROUND((
     (SELECT COUNT(DISTINCT fkUsuario) FROM respostaUsuario) /
     (SELECT COUNT(*) FROM usuario)
-  ) * 100, 2) AS taxa_participacao_quiz
+  ) * 100, 2) AS taxa_participacao_quis
 FROM usuario;
 
 
@@ -74,7 +73,7 @@ u.nome,
 r.acertos AS Acertos,
 r.erros AS Erros,
 q.idQuis,
-q.nome AS 'Nome Quiz'
+q.nome AS 'Nome Quis'
 FROM usuario u JOIN respostaUsuario r
 ON u.idUsuario = r.fkUsuario
 JOIN quis q

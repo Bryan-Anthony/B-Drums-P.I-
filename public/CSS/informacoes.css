@@ -11,6 +11,37 @@ body {
     justify-content: center;
 }
 
+.bt-voltar {
+    display: flex;
+    top: 40px;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    margin-right: 80%;
+}
+
+.bt-voltar u {
+    font-family: "Titan One", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    color: white;
+    /* margin-left: 120px; */
+    cursor: pointer;
+}
+
+.bt-voltar a {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+}
+
+.bt-voltar img {
+    height: 40px;
+    width: 40px;
+    cursor: pointer;
+}
+
 .logo {
     top: 0px;
     position: fixed;
@@ -31,7 +62,7 @@ body {
     border-radius: 10px;
     border: solid 3px rgb(3, 3, 73);
     width: 60vw;
-    height: 270vh;
+    height: 330vh;
 }
 
 .informacao-titulo {
@@ -52,8 +83,9 @@ h2 {
     height: 85px;
 }
 
-
-.setup{
+.motivo{
+    padding: 15px;
+    text-align: start;
 }
 
 .setup img {
