@@ -53,7 +53,11 @@
                 </div>
 
                 <div class="kpi">
-                    <span id="nivel"></span>
+                    <span id="media1"></span>
+                </div>
+
+                <div class="kpi">
+                    <span id="media2"></span>
                 </div>
 
             </div>
@@ -214,25 +218,20 @@
                                 erros2 = resposta[1].ERROS;
                             }
 
-                            // var total = (acertos1 + acertos2) + (erros1 + erros2);
-                            // var acertos = acertos1 + acertos2;
+                            // OPERAÇÕES MATEMÁTICAS
 
-                            // let porcentagemNivel = (acertos / total) * 100;
+                            var acertos = (Number(acertos1)) + Number(acertos2);
+                            var erros = (Number(erros1)) + Number(erros2);
+                            var total = acertos + erros;
 
-                            // if (porcentagem >= 9) {
-                            //     porcentagemNivel = 'Mestre da baqueta 🥁🔥';
-                            // }
-                            // else if (porcentagem >= 7) {
-                            //     porcentagemNivel = 'Avançado 🎧'
-                            // } else if (porcentagem >= 5) {
-                            //     porcentagemNivel = 'Intermediário 😎';
-                            // } else if (porcentagem >= 3) {
-                            //     porcentagemNivel = 'Iniciante 🧐';
-                            // } else {
-                            //     porcentagemNivel = 'Precisa estudar... 📚';
-                            // }
-                            // nivel.innerHTML = 'Seu Nível de acordo com seu dempenhos nas tentativas <br><br>';
-                            // nivel.innerHTML += porcentagemNivel;
+                            var mAcertos = ((acertos / total) * 100).toFixed(2);
+                            var mErros = ((erros / total) * 100).toFixed(2);
+
+                            media1.innerHTML = 'Média de <span style="color: #4169E1;"> acertos </span> baseada em suas tentativas <br><br>';
+                            media1.innerHTML += mAcertos + '%';
+
+                            media2.innerHTML = 'Média de <span style="color: #F44336;"> erros </span> baseada em suas tentativas <br><br>';
+                            media2.innerHTML += mErros + '%';
 
                             plotarGrafico();
 
