@@ -5,8 +5,8 @@ function buscarUltimasMedidas() {
     // OPERAÇÕES MATEMÁTICAS
 
     var instrucaoSql = `SELECT 
-    ROUND((AVG(CASE WHEN pergunta = 'sim' THEN 1 ELSE 0 END) * 100), 2) AS media_sim,
-    ROUND((AVG(CASE WHEN pergunta = 'não' THEN 1 ELSE 0 END) * 100), 2) AS media_nao,
+    ROUND((AVG(CASE WHEN isBaterista = 1 THEN 1 ELSE 0 END) * 100), 2) AS media_sim,
+    ROUND((AVG(CASE WHEN isBaterista = 0 THEN 1 ELSE 0 END) * 100), 2) AS media_nao,
     ROUND((
     (SELECT COUNT(DISTINCT fkUsuario) FROM respostaUsuario) /
     (SELECT COUNT(*) FROM usuario)

@@ -25,7 +25,7 @@ async function cadastrar(nome, sobrenome, email, senha, pergunta) {
             // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
             //  e na ordem de inserção dos dados.
             var instrucaoSql = `
-                INSERT INTO usuario (nome, sobrenome, email, senha, pergunta) VALUES ('${nome}', '${sobrenome}', '${email}', '${senha}', '${pergunta}');
+                INSERT INTO usuario (nome, sobrenome, email, senha, isBaterista) VALUES ('${nome}', '${sobrenome}', '${email}', '${senha}', '${pergunta}');
             `;
             console.log("Executando a instrução SQL: \n" + instrucaoSql);
             return database.executar(instrucaoSql);
